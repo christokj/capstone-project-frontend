@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShowProducts() {
     const [data, setData] = useState([]);
     const location = useLocation();
     const { id, searchValue } = location.state || {};  // Destructure state from location
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Function to fetch all products
@@ -66,12 +67,14 @@ function ShowProducts() {
         console.log(id);
         try {
             const response = await axiosInstance({
-                url: `/user/add-cart`,
+                url: '/user/add-cart',
                 method: "POST",
-                data: { productId: id, quantity: 1 }
+                data: { productId: id, quantity: 1 },
+                withCredentials: true // Ensure cookies are sent with the request
             });
             setData(response.data.data);
             toast.success("Product added to cart");
+            navigate('cart');
         } catch (error) {
             console.log(error);
             toast.error("Product not added");

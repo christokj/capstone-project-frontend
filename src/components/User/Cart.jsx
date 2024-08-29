@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import toast from 'react-hot-toast';
+import { axiosInstance } from '../../config/axiosInstance';
 
 function Cart() {
+
+    const items = async () => {
+        try {
+            const response = await axiosInstance({
+                url: "/user/show-cart",
+                method: "GET",
+            });
+            
+            console.log(response.data.cart.products[0].productId)
+            console.log(response.data.cart.totalPrice)
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed fetching cart items");
+        }
+
+    }
+        useEffect(() => {
+
+            items()
+        
+        }, [])
+        
     return (
         <div className="flex-none me-3 hidden sm:block hover:shadow-lg rounded-full">
             <div className="dropdown dropdown-end">
