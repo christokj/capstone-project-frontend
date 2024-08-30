@@ -7,7 +7,7 @@ function CartPage() {
     <div>
         <ShowCart/>
     </div>
-  )
+  );
 }
 
-export default CartPage
+export default CartPage;

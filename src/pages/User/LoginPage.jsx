@@ -4,11 +4,14 @@ import * as formik from 'formik';
 import * as yup from 'yup';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { loginSuccess } from '../../redux/features/authSlice';
+import { useDispatch } from 'react-redux';
 
 function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const { Formik } = formik;
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     // Validation schema using Yup
     const schema = yup.object().shape({
@@ -27,6 +30,13 @@ function LoginPage() {
                 method: "POST",
                 data: values,
             });
+
+            let token = response?.data?.token
+
+            localStorage.setItem('token', token);
+
+            dispatch(loginSuccess({ user: "auth", token }));
+
             toast.success("Login successful");
             navigate('/user', { replace: true })
         } catch (error) {

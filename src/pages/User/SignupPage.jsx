@@ -122,8 +122,11 @@ function SignupPage() {
             toast.success("Account created successfully");
             navigate('/login', { replace: true });
         } catch (error) {
-            console.log(error);
-            toast.error("Account creation failed");
+            if (error.response && error.response.data && error.response.data.error) {
+                toast.error(error.response.data.error);
+            } else {
+                console.log('An unexpected error occurred.');
+            }
         }
     };
 

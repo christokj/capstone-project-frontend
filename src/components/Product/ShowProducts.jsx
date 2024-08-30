@@ -64,7 +64,6 @@ function ShowProducts() {
 
     const handleClick = async (id) => {
 
-        console.log(id);
         try {
             const response = await axiosInstance({
                 url: '/user/add-cart',
@@ -74,11 +73,16 @@ function ShowProducts() {
             });
             setData(response.data.data);
             toast.success("Product added to cart");
-            navigate('cart');
+            navigate('/user/cart', {replace: true});
         } catch (error) {
             console.log(error);
             toast.error("Product not added");
         }
+    }
+
+    const ShowProducts = async (id) => {
+        navigate(`/user/product/${id}`, { state: { id } });
+
     }
 
     return (
@@ -87,6 +91,7 @@ function ShowProducts() {
                 <div key={item._id} className="md:w-64  md:mx-auto mx-4">
                     <figure>
                         <img 
+                            onClick={() => ShowProducts(item._id)}
                             src={item.image} 
                             className='rounded-2xl w-52 h-40 hover:scale-105 transition duration-300 hover:shadow-2xl hover:opacity-90' 
                             alt={item.title}  

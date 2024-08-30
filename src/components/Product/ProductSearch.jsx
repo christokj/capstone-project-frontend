@@ -13,7 +13,7 @@ function ProductSearch() {
         if (event.key === 'Enter') {
             event.preventDefault();
             console.log('Search Value:', searchValue);
-            navigate('products', { state: { searchValue } });
+            navigate('/user/products', { state: { searchValue } });
         }
     };
 
