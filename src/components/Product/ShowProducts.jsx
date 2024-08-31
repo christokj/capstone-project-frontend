@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function ShowProducts() {
     const [data, setData] = useState([]);
@@ -9,6 +10,8 @@ function ShowProducts() {
     const { id, searchValue } = location.state || {};  // Destructure state from location
     const navigate = useNavigate();
 
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    
     useEffect(() => {
         // Function to fetch all products
         const fetchAllProducts = async () => {
@@ -99,9 +102,9 @@ function ShowProducts() {
                     </figure>
                     <div className="card-body">
                         <h4 className="truncate">{item.title}</h4>
-                        <span className="text-lg font-bold"> ₹{item.price * 83}</span>
+                        <span className="text-lg font-bold"> ₹{Math.round(item.price * 83)}</span>
                         <div className="card-actions justify-end">
-                            <button className="btn bg-main" onClick={() => handleClick(item._id,)}>Add to cart</button>
+                            <button className={`btn bg-main ${isAuthenticated ? 'block' : 'hidden'}`} onClick={() => handleClick(item._id,)}>Add to cart</button>
                         </div>
                     </div>
                 </div>

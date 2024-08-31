@@ -6,13 +6,13 @@ import { loadStripe } from "@stripe/stripe-js";
 function ShowCart() {
     const [cartData, setCartData] = useState([]);
     const [cart, setCart] = useState([]);
-
     const fetchCartItems = async () => {
         try {
             const response = await axiosInstance({
                 url: "/user/show-cart",
                 method: "GET",
             });
+
             setCartData(response?.data?.cart[0]?.products);
             setCart(response?.data?.cart);
         } catch (error) {
@@ -21,6 +21,7 @@ function ShowCart() {
         }
     };
 
+   
     const makePayment = async () => {
         try {
             const stripe = await loadStripe(import.meta.env.VITE_STRIPE_Publishable_key);
@@ -41,6 +42,20 @@ function ShowCart() {
             console.log(error);
         }
     };
+
+    const removeCart = async (productId) => {
+        try {
+            const response = await axiosInstance({
+                url: `/user/remove-cart/${productId}`,
+                method: "DELETE",
+            });
+            toast.success("Item removed from cart");
+            fetchCartItems();
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to remove item from cart");
+        }
+    };
 // console.log(cart)  
     useEffect(() => {
         fetchCartItems();
@@ -58,6 +73,7 @@ function ShowCart() {
                         <h4 className="truncate"></h4>
                             {item.productDetails.title}
                             <span className="text-lg font-bold"> ₹{(item.productDetails.price * 83).toFixed(0)}</span>
+                            <button onClick={() => removeCart(item.productId)} className='btn bg-gray-200 '>Remove</button>
                     </div>
                 </div>
             ))}

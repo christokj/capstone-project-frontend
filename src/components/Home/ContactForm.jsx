@@ -117,7 +117,7 @@ function ContactForm() {
                             </div>
                             <div className='grid gap-2 mt-6'>
                                 <button
-                                    className='py-2  px-4 bg-transparent border border-blue-500 text-blue-500 font-semibold rounded hover:bg-blue-500 hover:text-white transition-colors duration-200'
+                                    className='py-2  px-4 bg-transparent border border-main text-dark-grey-900 font-semibold rounded hover:bg-main hover:text-black transition-colors duration-200'
                                     type="submit">
                                     Submit
                                 </button>

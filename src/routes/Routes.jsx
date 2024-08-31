@@ -16,6 +16,13 @@ import SuccessPage from "../pages/Orders/SuccessPage";
 import CancelPage from "../pages/Orders/CancelPage";
 import ProfilePage from "../pages/User/ProfilePage";
 import ProfileEditPage from "../pages/User/ProfileEditPage";
+import OtpVerifyPage from "../pages/Auth/OtpVerifyPage";
+import { ModeratorAuth } from "./protectedRoutes/ModeratorAuth";
+import { ModeratorLayout } from "../layouts/ModeratorLayout";
+import ModeratorSignUpPage from "../pages/Moderator/ModeratorSignUpPage";
+import ModeratorHomePage from "../pages/Moderator/ModeratorHomePage";
+import AddProductPage from "../pages/Moderator/AddProductPage";
+import ProductsByModeratorPage from "../pages/Products/ProductsByModeratorPage";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +58,14 @@ export const router = createBrowserRouter([
                 path: "signup",
                 element: <SignupPage />,
             },
+            {
+                path: "verify-otp",
+                element: <OtpVerifyPage />,
+            },
+            {
+                path: "moderator-login",
+                element: <ModeratorSignUpPage/>
+            }
         ],
     },
     {
@@ -107,4 +122,26 @@ export const router = createBrowserRouter([
             }
         ],
     },
+    {
+        path: "moderator",
+        element: (
+            <ModeratorAuth>
+                <ModeratorLayout />
+            </ModeratorAuth>
+            ),
+            children: [
+                {
+                    path: "",
+                    element: <ModeratorHomePage/>
+                },
+                {
+                    path: "add-product",
+                    element: <AddProductPage/>
+                },
+                {
+                    path: "show-products",
+                    element: <ProductsByModeratorPage />,
+                }
+            ]
+    }
 ]);

@@ -20,13 +20,16 @@ function LoginPage() {
             .matches(/\S+@\S+\.\S+/, "Please enter a valid email"),
         password: yup.string()
             .required("Please enter your password")
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z\d@]{8,}$/, "Password should contain a minimum of 8 characters, a small letter, and a capital letter"),
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/, "Password should contain a minimum of 8 characters, a small letter, and a capital letter"),
+        role: yup.string()
+            .required("Please select your role")
     });
 
     const handleLoginSubmit = async (values) => {
+       
         try {
             const response = await axiosInstance({
-                url: "/user/login",
+                url: `/${values.role}/login`,
                 method: "POST",
                 data: values,
             });
@@ -35,13 +38,37 @@ function LoginPage() {
 
             localStorage.setItem('token', token);
 
-            dispatch(loginSuccess({ user: "auth", token }));
-
-            toast.success("Login successful");
-            navigate('/user', { replace: true })
+            dispatch(loginSuccess({ user: values.role, token }));
+            navigate(`/${values.role}`, { replace: true })
         } catch (error) {
-            console.log(error);
-            toast.error("Login failed");
+            if (error.response && error.response.data && error.response.data.error) {
+                toast.error(error.response.data.error);
+            } else if (error.response && error.response.status === 400) {
+                if (error.response.data.message === 'Your account is inactive') {
+                    const email = error.response.data.email
+                    try {
+                        const res = await axiosInstance({
+                            url: '/user/otp-sender',
+                            method: "POST",
+                            data: {email},
+                        });
+                        toast.success("Please verify your account, An OTP has been sent to your registered email.");
+                        navigate('/verify-otp',  { replace: true });
+                    } catch (error) {
+                        if (error.response && error.response.data && error.response.data.error) {
+                            toast.error(error.response.data.error);
+                        } else if (error.response && error.response.status === 400) {
+                            toast.error(error.response.data.message || 'Registration failed');
+                        } else {
+                            toast.error('An unexpected error occurred.');
+                        }
+                    }
+                }
+                toast.error(error.response.data.message || 'Registration failed');
+                console.log(error.response.data.message)
+            } else {
+                toast.error('An unexpected error occurred.');
+            }
         }
     };
 
@@ -69,6 +96,24 @@ function LoginPage() {
                         >
                             {({ handleSubmit, handleChange, values, errors }) => (
                                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                                    <div>
+                                        <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Select Role
+                                        </label>
+                                        <select
+                                            name="role"
+                                            id="role"
+                                            value={values.role}
+                                            onChange={handleChange}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        >
+                                            <option value="" disabled selected>Select a role</option>
+                                            <option value="user">User</option>
+                                            <option value="moderator">Moderator</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                        {errors.role && <span className="text-red-500 text-xs">{errors.role}</span>}
+                                    </div>
                                     <div>
                                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                             Your email

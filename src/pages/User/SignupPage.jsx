@@ -54,7 +54,7 @@ function SignupPage() {
             ),
         password: yup.string()
             .required()
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z\d@]{8,}$/, "Password should contain a minimum of 8 characters, a small letter, and a capital letter")
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/, "Password should contain a minimum of 8 characters, a small letter, and a capital letter")
             .test(
                 'alert-password',
                 "Password should contain a minimum of 8 characters, a small letter, and a capital letter",
@@ -62,9 +62,6 @@ function SignupPage() {
                     if (this.options.context.triggerAlert) {
                         if (!value) {
                             alert("Please enter password");
-                            return false;
-                        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[a-zA-Z\d@]{8,}$/.test(value)) {
-                            alert("Password should contain a minimum of 8 characters, a small letter, and a capital letter");
                             return false;
                         }
                     }
@@ -119,13 +116,22 @@ function SignupPage() {
                 method: "POST",
                 data: data,
             });
-            toast.success("Account created successfully");
-            navigate('/login', { replace: true });
+           
+            const email = response.data.email
+            const res = await axiosInstance({
+                url: '/user/otp-sender',
+                method: "POST",
+                data: {email},
+            });
+            toast.success("An OTP has been sent to your registered email. Please check your inbox.");
+            navigate('/verify-otp',  { replace: true });
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
                 toast.error(error.response.data.error);
+            } else if (error.response && error.response.status === 400) {
+                toast.error(error.response.data.message || 'Registration failed');
             } else {
-                console.log('An unexpected error occurred.');
+                toast.error('An unexpected error occurred.');
             }
         }
     };
