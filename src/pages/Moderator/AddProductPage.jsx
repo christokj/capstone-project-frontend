@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../config/axiosInstance';
 import PhotosUploader from '../../components/Moderator/PhotosUploader';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AddProductPage = () => {
 
-  const { id } = useParams();
+  const location = useLocation();
+  const { id } = location.state || {}; 
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -17,22 +17,26 @@ const AddProductPage = () => {
   const [addedPhotos, setAddedPhotos] = useState([]);
 
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!id) {
         return;
     }
-    axios.get('/places/' + id).then(response => {
-        const { data } = response;
-        setTitle(data.title);
-        setDescription(data.description);
-        setAddedPhotos(data.photos);
-        setCategory(data.perks);
-        setPrice(data.price);
-        setShopName(data.shopName);
-        console.log(data);
-    });
+    axiosInstance.get('/moderator/show-product/' + id)
+        .then(response => {
+            const { data } = response;
+            setTitle(data.product.title);
+            setDescription(data.product.description);
+            setAddedPhotos(data.product.image);
+            setCategory(data.product.category);
+            setPrice(data.product.price);
+            setShopName(data.product.shopName);
+        })
+        .catch(error => {
+            toast.error('Failed to fetch product details');
+            console.log(error); 
+        });
 }, [id]);
+
   
   async function saveProduct(ev) {
     ev.preventDefault();
@@ -46,8 +50,8 @@ const AddProductPage = () => {
     }
     if (id) {
       // update
-      await axios.put('/places', {
-          id, ...placeData
+      await axiosInstance.put('/moderator/update-product', {
+          id, ...productData
       });
       toast.success('Product updated successfully');
       navigate('/moderator', { replace: true }); 
@@ -134,7 +138,7 @@ const AddProductPage = () => {
       <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
       </div>
       <button type="submit" className="btn bg-main w-full">
-        Add Product
+        Save Product
       </button>
     </form>
   );

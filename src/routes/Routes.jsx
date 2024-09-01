@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "../layouts/RootLayout";
 import HomePage from "../pages/User/HomePage";
 import { ErrorPage } from "../pages/User/ErrorPage";
-import ProductByCategory from "../pages/Products/ProductByCategory";
+import ProductByCategory from "../components/Product/ProductByCategory";
 import ProductsPage from "../pages/Products/ProductsPage";
 import ProductPage from "../pages/Products/ProductPage";
 import ContactPage from "../pages/User/ContactPage";

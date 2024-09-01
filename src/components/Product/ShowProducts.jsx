@@ -11,7 +11,6 @@ function ShowProducts() {
     const navigate = useNavigate();
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    
     useEffect(() => {
         // Function to fetch all products
         const fetchAllProducts = async () => {
@@ -83,10 +82,10 @@ function ShowProducts() {
         }
     }
 
-    const ShowProducts = async (id) => {
-        navigate(`/user/product/${id}`, { state: { id } });
+    // const ShowProducts = async (id) => {
 
-    }
+    //     navigate(`/user/product/${id}`, { state: { id } });
+    // }
 
     return (
         <div className='card bg-base-100 shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
@@ -94,8 +93,8 @@ function ShowProducts() {
                 <div key={item._id} className="md:w-64  md:mx-auto mx-4">
                     <figure>
                         <img 
-                            onClick={() => ShowProducts(item._id)}
-                            src={item.image} 
+                            // onClick={() => ShowProducts(item._id)}
+                            src={item.image[0]} 
                             className='rounded-2xl w-52 h-40 hover:scale-105 transition duration-300 hover:shadow-2xl hover:opacity-90' 
                             alt={item.title}  
                         />

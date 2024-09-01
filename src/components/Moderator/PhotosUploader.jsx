@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Lottie from 'lottie-react';
 import iconPlus from '../../assets/icons8-plus.json';
 import iconTrash from '../../assets/delete.json';
@@ -43,6 +42,7 @@ function PhotosUploader({ addedPhotos, onChange }) {
         ev.preventDefault();
         onChange([...addedPhotos.filter(photo => photo !== filename)]);
     }
+    console.log(addedPhotos)
 
     return (
         <>
