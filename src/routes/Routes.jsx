@@ -23,6 +23,16 @@ import ModeratorSignUpPage from "../pages/Moderator/ModeratorSignUpPage";
 import ModeratorHomePage from "../pages/Moderator/ModeratorHomePage";
 import AddProductPage from "../pages/Moderator/AddProductPage";
 import ProductsByModeratorPage from "../pages/Products/ProductsByModeratorPage";
+import AddCategoryPage from "../pages/Moderator/AddCategoryPage";
+import ShowCategory from "../components/Product/ShowCategory";
+import ModeratorProfilePage from "../pages/Moderator/ModeratorProfilePage";
+import ModeratorProfileEditPage from "../pages/Moderator/ModeratorProfileEditPage";
+import { AdminAuth } from "./protectedRoutes/AdminAuth";
+import { AdminLayout } from "../layouts/AdminLayout";
+import AdminHomePage from "../pages/Admin/AdminHomePage";
+import AdminUsersPage from "../pages/Admin/AdminUsersPage";
+import AdminModeratorsPage from "../pages/Admin/AdminModeratersPage";
+import AdminProductsPage from "../pages/Admin/AdminProductsPage";
 
 export const router = createBrowserRouter([
     {
@@ -141,7 +151,49 @@ export const router = createBrowserRouter([
                 {
                     path: "show-products",
                     element: <ProductsByModeratorPage />,
+                },
+                {
+                    path: "add-category",
+                    element: <AddCategoryPage/>
+                },
+                {
+                    path: "show-category",
+                    element: <ShowCategory/>
+                },
+                {
+                    path: "moderator-profile",
+                    element: <ModeratorProfilePage/>
+                },
+                {
+                    path: "update-profile",
+                    element: <ModeratorProfileEditPage/>
                 }
             ]
+    },
+    {
+        path: "admin",
+        element: (
+            <AdminAuth >
+                <AdminLayout/>
+            </AdminAuth>
+        ),
+        children: [
+            {
+                path: "",
+                element: <AdminHomePage/>
+            },
+            {
+                path: "users",
+                element: <AdminUsersPage/>
+            },
+            {
+                path: "moderators",
+                element: <AdminModeratorsPage/>
+            },
+            {
+                path: "products",
+                element: <AdminProductsPage/>
+            }
+        ]
     }
 ]);

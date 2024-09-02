@@ -1,31 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { axiosInstance } from '../../config/axiosInstance';
-import { logout } from '../../redux/features/authSlice';
-import toast from 'react-hot-toast';
+import React from 'react'
+import { useSelector } from 'react-redux';
 
-function ModeratorIcon() {
+function AdminIcon() {
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const [moderator, setModerator] = useState(false);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    function hasCookie(name) {
-        const cookieValue = `; ${document.cookie}`;
-        const parts = cookieValue.split(`; ${name}=`);
-        if (parts.length === 2) {
-            setModerator(true);
-            return true;
-        }
-        setModerator(false);
-        return false;
-    }
-
-    useEffect(() => {
-        hasCookie('moderatorCookieName');
-    }, [moderator]);
 
     const handleClick = async () => {
         try {
@@ -51,6 +29,7 @@ function ModeratorIcon() {
             toast.error("Failed to fetch details");
         }
     }
+    
   return (
     <div className="dropdown dropdown-end me-10">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -72,4 +51,4 @@ function ModeratorIcon() {
   )
 }
 
-export default ModeratorIcon
+export default AdminIcon

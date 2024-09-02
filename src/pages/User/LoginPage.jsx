@@ -26,7 +26,7 @@ function LoginPage() {
     });
 
     const handleLoginSubmit = async (values) => {
-       
+       console.log(values)
         try {
             const response = await axiosInstance({
                 url: `/${values.role}/login`,
@@ -58,16 +58,16 @@ function LoginPage() {
                         if (error.response && error.response.data && error.response.data.error) {
                             toast.error(error.response.data.error);
                         } else if (error.response && error.response.status === 400) {
-                            toast.error(error.response.data.message || 'Registration failed');
+                            toast.error(error.response.data.message || 'Login failed');
                         } else {
-                            toast.error('An unexpected error occurred.');
+                            toast.error('An unexpected error occurred. Please use another password and email');
                         }
                     }
                 }
-                toast.error(error.response.data.message || 'Registration failed');
+                toast.error(error.response.data.message || 'Login failed');
                 console.log(error.response.data.message)
             } else {
-                toast.error('An unexpected error occurred.');
+                toast.error('An unexpected error occurred. Please use another password and email');
             }
         }
     };

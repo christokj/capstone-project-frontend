@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../config/axiosInstance';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShowCategory() {
-    const [data, setData] = useState([]);
     const navigate = useNavigate();
+    let role = 'User'
+    const location = useLocation();
+
+    if (location.state) {
+         role  = location.state.role;
+    } 
+    
+    const [data, setData] = useState([]);
 
     const fetchCategory = async () => {
         try {
@@ -25,10 +32,33 @@ function ShowCategory() {
     }, []);
 
     const handleClick = (id) => {
+
+        if (!role) {
         console.log(id);
         navigate('products-by-category', { state: { id } });
     }
+    if (role === 'Moderator') {
 
+        navigate('/moderator/add-category', { state: { id } });
+} 
+}
+
+    const handleRemove = async (productId) => {
+        try {
+            const response = await axiosInstance({
+                url: `/moderator/remove-category/${productId}`,
+                method: "DELETE",
+            });
+            
+            toast.success("Product removed");
+            navigate('/moderator', {replace: true})
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to remove product");
+        }
+    }
+
+    
     return (
         <div>
             <div className='text-center mb-10'>
@@ -42,11 +72,13 @@ function ShowCategory() {
             </div>
             <div className="card bg-base-100 shadow-xl grid md:grid-cols-4 grid-cols-2 cursor-pointer">
                 {data.map((item) => (
+                    <div>
+
                     <div key={item._id} onClick={() => handleClick(item._id)} className='md:w-52 md:mx-auto mx-4'>
                         <div>
                             <img 
                                 className='rounded-2xl w-52 h-40 hover:scale-105 transition duration-300 hover:shadow-2xl hover:opacity-90' 
-                                src={item.image} 
+                                src={item.image[0]} 
                                 alt={item.name} 
                             />
                         </div>
@@ -55,6 +87,12 @@ function ShowCategory() {
                                 {item.name}
                                 <div className="badge badge-secondary">NEW</div>
                             </h2>
+                        </div>
+                    </div>
+                        <div className='grid grid-cols-2'>
+
+                        <div>{role && <div className='btn bg-main' onClick={() => handleRemove(item._id)}> Remove </div>}</div>
+                        <div>{role && <div className='btn bg-main' onClick={() => handleClick(item._id)}> Update </div>}</div>
                         </div>
                     </div>
                 ))}
