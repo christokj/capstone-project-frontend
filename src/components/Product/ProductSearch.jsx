@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function ProductSearch() {
@@ -8,12 +9,19 @@ function ProductSearch() {
     const handleInputChange = (event) => {
         setSearchValue(event.target.value);
     };
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
             console.log('Search Value:', searchValue);
-            navigate('/user/products', { state: { searchValue } });
+            if (isAuthenticated) {
+
+                navigate('/user/products', { state: { searchValue } });
+            } else {
+                navigate('/products', { state: { searchValue } });
+
+            }
         }
     };
 

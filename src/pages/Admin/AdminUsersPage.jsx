@@ -7,18 +7,18 @@ function AdminUsersPage() {
 
     const [users, setUsers] = useState([]);
 
+    const fetchUsers = async () => {
+        try {
+            const response = await axiosInstance.get('/admin/view-users');
+            setUsers(response.data.users);
+
+        } catch (error) {
+            toast.error('Failed to fetch users');
+        }
+    };
 
     useEffect(() => {
         // Fetch users from the server when the component mounts
-        const fetchUsers = async () => {
-            try {
-                const response = await axiosInstance.get('/admin/view-users');
-                setUsers(response.data.users);
-
-            } catch (error) {
-                toast.error('Failed to fetch users');
-            }
-        };
         fetchUsers();
     }, []);
 
@@ -27,7 +27,8 @@ function AdminUsersPage() {
         try {
             const response = await axiosInstance.put(`/admin/update-user-status/${userId}`);
             toast.success('Status updated successfully');
-            window.location.reload();
+            // window.location.reload();
+            fetchUsers();
         } catch (error) {
             toast.error('Failed to update status');
         }
@@ -64,7 +65,7 @@ function AdminUsersPage() {
                                         <td>{user.mobile}</td>
                                         <td>{user.status}</td>
                                         <td>
-                                            <button className={`btn-sm bg-red-400 gap-2 btn ${user.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`} onClick={() => handleStatus(user._id)}>
+                                            <button className={`btn-sm gap-2 btn ${user.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`} onClick={() => handleStatus(user._id)}>
                                             {user.status === 'active' ? 'Freeze' : 'Activate'}
                                             </button>
                                         </td>

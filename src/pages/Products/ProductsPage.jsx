@@ -3,8 +3,9 @@ import ShowProducts from '../../components/Product/ShowProducts';
 
 function ProductsPage() {
    
+  
   return (
-    <div>
+    <div >
         <ShowProducts id={null}/>
     </div>
   );

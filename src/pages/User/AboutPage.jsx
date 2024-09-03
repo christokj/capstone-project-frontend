@@ -14,7 +14,7 @@ function AboutPage() {
                     <div className="flex flex-col md:flex-row items-center mb-12">
                         <img src="https://i.pinimg.com/originals/50/78/a0/5078a05eb1b6847d93383eaa4c0ed500.gif" alt="Company Image" className="w-full md:w-1/2 rounded-lg shadow-lg mb-6 md:mb-0 md:mr-6" />
                         <div className="md:ml-6 text-center md:text-left">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Our Mission</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-600 mb-4">Our Mission</h2>
                             <p className="text-lg sm:text-xl text-gray-600">
                                 Our mission is to provide the best products with a commitment to quality and customer satisfaction. We aim to make your shopping experience as smooth and enjoyable as possible.
                             </p>
@@ -22,7 +22,7 @@ function AboutPage() {
                     </div>
                     <div className="flex flex-col md:flex-row items-center mb-12">
                         <div className="md:mr-6 text-center md:text-right">
-                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Our Vision</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-gray-600 mb-4">Our Vision</h2>
                             <p className="text-lg sm:text-xl text-gray-600">
                                 We envision a world where shopping is effortless, enjoyable, and accessible to everyone. We strive to lead the way in innovation and customer service.
                             </p>
@@ -30,26 +30,26 @@ function AboutPage() {
                         <img src="https://fluit.co/img/fluit/startup-rocket.gif" alt="Vision Image" className="w-full md:w-1/2 rounded-lg shadow-lg mb-6 md:mb-0 md:ml-6" />
                     </div>
                     <div className="text-center">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Meet the Team</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-600 mb-4">Meet the Team</h2>
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full sm:w-1/2 md:w-1/4 p-4">
                                 <img src="https://static.vecteezy.com/system/resources/previews/012/177/622/original/man-avatar-isolated-png.png" alt="Team Member" className="w-full rounded-full shadow-lg mb-4" />
-                                <h3 className="text-xl font-bold text-gray-800">John Doe</h3>
+                                <h3 className="text-xl font-bold text-gray-600">John Doe</h3>
                                 <p className="text-lg text-gray-600">CEO</p>
                             </div>
                             <div className="w-full sm:w-1/2 md:w-1/4 p-4">
                                 <img src="https://png.pngtree.com/png-vector/20220814/ourmid/pngtree-passport-photo-of-young-handsome-man-in-blue-checkered-shirt-close-png-image_5861432.png" alt="Team Member" className="w-full rounded-full shadow-lg mb-4" />
-                                <h3 className="text-xl font-bold text-gray-800">Jane Smith</h3>
+                                <h3 className="text-xl font-bold text-gray-600">Jane Smith</h3>
                                 <p className="text-lg text-gray-600">CTO</p>
                             </div>
                             <div className="w-full sm:w-1/2 md:w-1/4 p-4">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR7av_tdhO4CdLxhteZIv2Gjf_CWOj7ZGrXw&s" alt="Team Member" className="w-full rounded-full shadow-lg mb-4" />
-                                <h3 className="text-xl font-bold text-gray-800">Sara Johnson</h3>
+                                <h3 className="text-xl font-bold text-gray-600">Sara Johnson</h3>
                                 <p className="text-lg text-gray-600">CFO</p>
                             </div>
                             <div className="w-full sm:w-1/2 md:w-1/4 p-4">
                                 <img src="https://cdn-icons-png.flaticon.com/512/2479/2479880.png" alt="Team Member" className="w-full rounded-full shadow-lg mb-4" />
-                                <h3 className="text-xl font-bold text-gray-800">Mike Brown</h3>
+                                <h3 className="text-xl font-bold text-gray-600">Mike Brown</h3>
                                 <p className="text-lg text-gray-600">COO</p>
                             </div>
                         </div>

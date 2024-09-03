@@ -13,7 +13,6 @@ const AddProductPage = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState('');
-  const [shopName, setShopName] = useState('');
   const [addedPhotos, setAddedPhotos] = useState([]);
 
   const navigate = useNavigate();
@@ -29,7 +28,6 @@ const AddProductPage = () => {
             setAddedPhotos(data.product.image);
             setCategory(data.product.category);
             setPrice(data.product.price);
-            setShopName(data.product.shopName);
         })
         .catch(error => {
             toast.error('Failed to fetch product details');
@@ -45,7 +43,6 @@ const AddProductPage = () => {
       description,
       price,
       category,
-      shopName,
       image: addedPhotos,
     }
     if (id) {
@@ -119,19 +116,6 @@ const AddProductPage = () => {
           placeholder='Category'
           className="input input-bordered" 
           onChange={ev => setCategory(ev.target.value)}
-        />
-      </div>
-      <div className="form-control">
-        <label htmlFor="shopName" className="label">
-          <span className="label-text">Shop Name</span>
-        </label>
-        <input 
-          name="shopName" 
-          type="text" 
-          value={shopName}
-          placeholder='Shop Name'
-          className="input input-bordered" 
-          onChange={ev => setShopName(ev.target.value)}
         />
       </div>
       <div className="form-control">

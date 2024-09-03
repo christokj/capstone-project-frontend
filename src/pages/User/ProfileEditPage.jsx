@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProfileEditPage = () => {
 
     const navigate = useNavigate();
     
+    const location = useLocation();
+   
     const [user, setUser] = useState({
         fullname: '',
         email: '',
@@ -21,6 +23,17 @@ const ProfileEditPage = () => {
         },
     });
 
+    useEffect(() => {
+        
+        if(location.state && location.state.userData) {
+            const { userData } = location.state;
+            setUser(userData);
+            console.log(userData)
+        }
+    
+    }, [location.state])
+    
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.includes("address")) {

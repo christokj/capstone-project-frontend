@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MyContext } from "../Context/Context";
 
 export const DarkMode = () => {
@@ -8,9 +8,12 @@ export const DarkMode = () => {
     const { value, setValue } = useContext(MyContext);
 
     document.querySelector("html").setAttribute("data-theme", isDarkMode ? "dark" : "light");
+    
+    useEffect(() => {
 
-setValue(isDarkMode)
-
+        setValue(isDarkMode)
+    }, [value])
+    
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
     };

@@ -1,8 +1,6 @@
-// src/components/Card.js
-
 import React from 'react';
 
-const Card = ({ image, title, description, price, onButtonClick, buttonText }) => {
+const Card = ({ image, title, description, price, onButtonClick }) => {
     return (
         <div className="card bg-base-100 shadow-lg rounded-2xl m-10 ">
 
@@ -20,7 +18,7 @@ const Card = ({ image, title, description, price, onButtonClick, buttonText }) =
                         className="btn bg-main"
                         onClick={onButtonClick}
                     >
-                        {buttonText}
+                        Add to cart
                     </button>
                 )}
             </div>

@@ -6,16 +6,17 @@ function AdminModeratorsPage() {
 
     const [moderators, setModerators] = useState([]);
 
+    const fetchModerators = async () => {
+        try {
+            const response = await axiosInstance.get('/admin/view-moderators');
+            setModerators(response.data.moderators);
+        } catch (error) {
+            toast.error('Failed to fetch moderators');
+        }
+    };
+
     useEffect(() => {
-        // Fetch moderators from the server when the component mounts
-        const fetchModerators = async () => {
-            try {
-                const response = await axiosInstance.get('/admin/view-moderators');
-                setModerators(response.data.moderators);
-            } catch (error) {
-                toast.error('Failed to fetch moderators');
-            }
-        };
+        // Fetch moderators from the server when the component mounts  
         fetchModerators();
     }, []);
 
@@ -31,7 +32,7 @@ function AdminModeratorsPage() {
                         : moderator
                 )
             );
-            window.location.reload();
+            fetchModerators();
         } catch (error) {
             toast.error('Failed to update status');
         }
@@ -70,7 +71,7 @@ function AdminModeratorsPage() {
                                         <td>{moderator.status}</td>
                                         <td>
                                             <button
-                                                className={`btn-sm bg-red-400 gap-2 btn ${moderator.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`}
+                                                className={`btn-sm gap-2 btn ${moderator.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`}
                                                 onClick={() => handleStatus(moderator._id)}
                                             >
                                                 {moderator.status === 'active' ? 'Freeze' : 'Activate'}

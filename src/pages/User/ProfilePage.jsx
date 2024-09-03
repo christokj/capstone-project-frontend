@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/features/authSlice';
 
 function ProfilePage() {
 
     const [userData, setUserData] = useState(null);
 
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
     const handleClick = async () => {
         try {
             const response = await axiosInstance({
@@ -21,6 +26,12 @@ function ProfilePage() {
             console.log(error);
             toast.error("Logout failed");
         }
+    }
+
+    const handleUpdate = async () => {
+
+      navigate('/user/update-user', { state: { userData } })
+
     }
 
         const fetchUserData = async () => {
@@ -82,7 +93,7 @@ function ProfilePage() {
           <div className="mt-6">
             <h3 className="text-lg font-semibold text-gray-800">Settings</h3>
             <div className="mt-4 space-y-4">
-              <Link  to={'/user/update-user'} className="btn bg-main w-full">Edit Profile</Link>
+              <button  onClick={handleUpdate} className="btn bg-main w-full">Edit Profile</button>
               <button onClick={handleClick} className="btn btn-error w-full">Log Out</button>
             </div>
           </div>

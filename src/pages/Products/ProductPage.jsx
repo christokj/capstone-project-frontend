@@ -1,65 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import Card from '../../components/Product/Card';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../config/axiosInstance';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Card from '../../components/Product/Card';
 
 function ShowProduct() {
+    const [product, setProduct] = useState([]);
 
-    const { productId } = useParams(); // Assuming you're using React Router
-    const [product, setProduct] = useState(null);
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     const navigate = useNavigate();
 
-    const addToCart = async (id) => {
-        try {
-            const response = await axiosInstance({
-                url: '/user/add-cart',
-                method: "POST",
-                data: { productId: id, quantity: 1 },
-                withCredentials: true // Ensure cookies are sent with the request
-            });
-            toast.success("Product added to cart");
-            navigate('/user/cart', {replace: true});
-        } catch (error) {
-            console.log(error);
-            toast.error("Product not added");
-        }
-    };
+    const location = useLocation();
 
-    useEffect(() => {
-        const fetchProduct = async () => {
+    const handleClick = async (id) => {
+        if (isAuthenticated) {
             try {
-                const response = await axiosInstance.get(`/user/show-one-product/${productId}`);
-                setProduct(response.data.data);
-                console.log(response.data.data)
-            
+                const response = await axiosInstance({
+                    url: '/user/add-cart',
+                    method: "POST",
+                    data: { productId: id, quantity: 1 },
+                    withCredentials: true 
+                });
+                toast.success("Product added to cart");
+                navigate('/user/cart', { replace: true });
             } catch (error) {
                 console.log(error);
-                toast.error("Failed to fetch product details");
-            
+                toast.error("Product not added");
             }
-        };
-
-        fetchProduct();
-    }, [productId]);
+        } else {
+            navigate("/login");
+            toast.error("Please login to add product to cart");
+        }
+    };
+console.log(product)
+    useEffect(() => {
+        if (location.state && location.state.product) {
+            setProduct(location.state.product);
+        }
+    }, [location.state]);
 
     if (!product) {
-        return <div className="text-center">Product not found</div>;
+        return <div className="text-center">Products not found</div>;
+    } 
+
+        return (
+            <div className="max-w-3xl mx-auto p-4">
+                <Card
+                    image={product.image} 
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    onButtonClick={() => handleClick(product._id)}
+                />
+            </div>
+        );
     }
-    
-    return (
-        <div className="max-w-3xl mx-auto p-4">
-        <Card
-            image={product.image}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            onButtonClick={() => addToCart(product._id)}
-            buttonText="Add to Cart"
-        />
-    </div>
-    );
-}
 
 export default ShowProduct;

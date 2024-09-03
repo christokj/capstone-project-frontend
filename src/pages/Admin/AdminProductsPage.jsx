@@ -5,17 +5,19 @@ import toast from 'react-hot-toast';
 function AdminProductsPage() {
     const [products, setProducts] = useState([]);
 
+    const fetchProducts = async () => {
+        try {
+            const response = await axiosInstance.get('/user/show-products');
+            setProducts(response.data.data);
+            console.log(response.data.data)
+        } catch (error) {
+            toast.error('Failed to fetch products');
+        }
+    };
+
     useEffect(() => {
         // Fetch products from the server when the component mounts
-        const fetchProducts = async () => {
-            try {
-                const response = await axiosInstance.get('/user/show-products');
-                setProducts(response.data.data);
-                console.log(response.data.data)
-            } catch (error) {
-                toast.error('Failed to fetch products');
-            }
-        };
+       
         fetchProducts();
     }, []);
 
@@ -23,7 +25,7 @@ function AdminProductsPage() {
         try {
             await axiosInstance.delete(`/admin/remove-product/${productId}`);
             toast.success('Product deleted successfully');
-            setProducts(products.filter(product => product.id !== productId));
+            fetchProducts();
         } catch (error) {
             toast.error('Failed to delete product');
         }
@@ -51,15 +53,22 @@ function AdminProductsPage() {
                         <tbody>
                             {products.length > 0 ? (
                                 products.map(product => (
-                                    <tr key={product.id}>
+                                    <tr key={product._id}>
                                         <td>{product.id}</td>
+                                        <td>
+                                            <img 
+                                                src={product.image[0]} 
+                                                alt={product.name} 
+                                                className="w-16 h-16 object-cover"
+                                            />
+                                        </td>
                                         <td>{product.title}</td>
                                         <td>{product.category}</td>
                                         <td>{Math.round(product.price * 83)}</td>    
                                         <td>
                                             <button
                                                 className="btn-sm bg-red-400 gap-2 btn"
-                                                onClick={() => handleDelete(product.id)}
+                                                onClick={() => handleDelete(product._id)}
                                             >
                                                 Delete
                                             </button>

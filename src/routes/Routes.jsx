@@ -33,6 +33,7 @@ import AdminHomePage from "../pages/Admin/AdminHomePage";
 import AdminUsersPage from "../pages/Admin/AdminUsersPage";
 import AdminModeratorsPage from "../pages/Admin/AdminModeratersPage";
 import AdminProductsPage from "../pages/Admin/AdminProductsPage";
+import AdminCategoryPage from "../pages/Admin/AdminCategoryPage";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
             {
                 path: "moderator-login",
                 element: <ModeratorSignUpPage/>
+            },
+            {
+                path: "product",
+                element: <ProductPage />,
             }
         ],
     },
@@ -127,7 +132,7 @@ export const router = createBrowserRouter([
                 element: <ProfileEditPage/>
             },
             {
-                path: "product/:productId",
+                path: "product",
                 element: <ProductPage />,
             }
         ],
@@ -193,7 +198,15 @@ export const router = createBrowserRouter([
             {
                 path: "products",
                 element: <AdminProductsPage/>
-            }
+            },
+            {
+                path: "category",
+                element: <AdminCategoryPage/>
+            },
+            {
+                path: "add-category",
+                element: <AddCategoryPage/>
+            },
         ]
     }
 ]);

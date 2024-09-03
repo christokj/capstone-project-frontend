@@ -13,7 +13,7 @@ function SocialMedia() {
         window.open('https://github.com/christokj', '_blank');
     }
     const handleOnClickGmail = () => {
-        window.open('mailto:christokj2@gmail.com', '_blank');
+        window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=christokj2@gmail.com&subject=MISSED%20CALL%20EZTRADER&body=Hello%2C%0A%0APlease%20enter%20your%20message%20here%20', '_blank')
     }
     const handleOnClickLinkedin = () => {
         window.open('https://linkedin.com/in/christo-kj-231932156', '_blank');

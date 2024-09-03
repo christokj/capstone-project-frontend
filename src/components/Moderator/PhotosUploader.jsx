@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import iconPlus from '../../assets/icons8-plus.json';
 import iconTrash from '../../assets/delete.json';
@@ -7,7 +7,7 @@ import { axiosInstance } from '../../config/axiosInstance';
 
 function PhotosUploader({ addedPhotos, onChange }) {
     const [photoLink, setPhotoLink] = useState('');
-
+    
     async function addPhotoByLink(ev) {
         ev.preventDefault();
         const { data: filename } = await axiosInstance({
@@ -42,7 +42,6 @@ function PhotosUploader({ addedPhotos, onChange }) {
         ev.preventDefault();
         onChange([...addedPhotos.filter(photo => photo !== filename)]);
     }
-    console.log(addedPhotos)
 
     return (
         <>

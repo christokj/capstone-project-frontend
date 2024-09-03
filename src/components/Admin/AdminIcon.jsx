@@ -1,14 +1,21 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/features/authSlice';
+import { axiosInstance } from '../../config/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function AdminIcon() {
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const handleClick = async () => {
         try {
             await axiosInstance({
-                url: "/moderator/logout",
+                url: "/admin/logout",
                 method: "GET",
             });
             localStorage.removeItem('Token');
@@ -20,15 +27,6 @@ function AdminIcon() {
             toast.error("Logout failed");
         }
     };
-
-    const handleProfile = async () => {
-        try {
-            navigate('/moderator/moderator-profile', { replace: true });
-        } catch (error) {
-            console.log(error);
-            toast.error("Failed to fetch details");
-        }
-    }
     
   return (
     <div className="dropdown dropdown-end me-10">
@@ -41,8 +39,6 @@ function AdminIcon() {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                    { isAuthenticated && <> 
-                    
-                    <li><a onClick={handleProfile}>Profile</a></li>
                     <li><a onClick={handleClick}>Logout</a></li>
                 </>
                 }

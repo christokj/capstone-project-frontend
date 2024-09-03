@@ -7,15 +7,20 @@ import toast from 'react-hot-toast';
 function AddCategoryPage() {
 
     const location = useLocation();
-    const {id} = location.state;
-
+    const [categoryId, setCategoryId] = useState(null);
+    const [role, setRole] = useState('moderator')
+    const navigate = useNavigate();
+  //   let id = null
+  // let role = 'moderator'
+  
+console.log(categoryId, role)
     const [category, setCategory] = useState('');
     const [addedPhotos, setAddedPhotos] = useState([]);
 
     useEffect(() => {
       
-        if (id) {
-            axiosInstance.get(`/moderator/product-category/${id}`)
+        if (categoryId) {
+            axiosInstance.get(`/${role}/product-category/${categoryId}`)
            .then((response) => {
                 setCategory(response.data.category.name);
                 setAddedPhotos(response.data.category.image);
@@ -26,31 +31,36 @@ function AddCategoryPage() {
             });
         }
     
+        if (location.state && location.state.id) {
+
+        //  const { id } = location.state;
+         setCategoryId(location.state.id)
+        }
+        if (location.state && location.state.role) {
+
+          // const { role } = location.state;
+          setRole(location.state.role)
+        }
      
-    }, [])
+    }, [categoryId, role])
     
-
-    
-
-    const navigate = useNavigate();
-
     async function saveProduct(ev) {
         ev.preventDefault();
-        if (!id) {
+        if (!categoryId) {
 
             const categoryData = {
                 category,
                 image: addedPhotos,
             } 
             await axiosInstance({
-                url: "/moderator/add-category",
+                url: `/${role}/add-category`,
                 method: "POST",
                 data: categoryData,
             })  
         }
-        if (id) {
+        if (categoryId) {
             const categoryData = {
-                id,
+                id: categoryId,
                 category,
                 image: addedPhotos,
             }
@@ -61,9 +71,10 @@ function AddCategoryPage() {
             })
         }
             toast.success('Category saved successfully');
-            navigate('/moderator', { replace: true }); 
+            navigate(`/${role}`, { replace: true }); 
       
       }
+
   return (
     <form onSubmit={saveProduct} className="space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 rounded-lg shadow-md">
 
@@ -91,4 +102,4 @@ function AddCategoryPage() {
   )
 }
 
-export default AddCategoryPage
+export default AddCategoryPage;
