@@ -87,7 +87,10 @@ function ShowProducts() {
     }
 
     if (data.length === 0) {
+        setTimeout(() => {
         return <div>Please try these words : Mens, Backpack, Silver, Gold etc...</div>;
+    }, 5000);
+    return <div>Loading...</div>;
     }
 
 

@@ -5,7 +5,7 @@ const Card = ({ image, title, description, price, onButtonClick }) => {
         <div className="card bg-base-100 shadow-lg rounded-2xl m-10 ">
 
             <figure className="w-96 mx-auto p-16 ">
-                <img src={image} alt={title} />
+                <img src={image[0]} alt={title} />
             </figure>
             <div className="card-body p-4">
                 <h2 className="card-title text-xl font-bold mb-2">{title}</h2>

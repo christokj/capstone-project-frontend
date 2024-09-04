@@ -31,6 +31,7 @@ function LoginPage() {
                 url: `/${values.role}/login`,
                 method: "POST",
                 data: values,
+                withCredentials: true,
             });
 
             let token = response?.data?.token
