@@ -12,7 +12,6 @@ export const AdminAuth = ({ children }) => {
             const response = await axiosInstance({
                 url: "/admin/check-admin",
                 method: "GET",
-                withCredentials: true,
             });
             setAdmin(true);
         } catch (error) {

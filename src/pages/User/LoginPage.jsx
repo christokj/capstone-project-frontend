@@ -38,7 +38,7 @@ function LoginPage() {
             localStorage.setItem('token', token);
 
             dispatch(loginSuccess({ user: values.role, token }));
-            navigate(`/${values.role}`, { replace: true })
+            navigate(`/${values.role}`, { replace: true });
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
                 toast.error(error.response.data.error);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance";
-import { replace, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const UserAuth = ({ children }) => {
     const navigate = useNavigate();
@@ -12,7 +12,6 @@ export const UserAuth = ({ children }) => {
             const response = await axiosInstance({
                 url: "/user/check-user",
                 method: "GET",
-                withCredentials: true,
             });
             setUser(true);
         } catch (error) {
