@@ -12,6 +12,7 @@ export const ModeratorAuth = ({ children }) => {
             const response = await axiosInstance({
                 url: "/moderator/check-moderator",
                 method: "GET",
+                withCredentials: true,
             });
             setModerator(true);
         } catch (error) {

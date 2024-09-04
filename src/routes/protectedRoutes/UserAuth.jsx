@@ -12,6 +12,7 @@ export const UserAuth = ({ children }) => {
             const response = await axiosInstance({
                 url: "/user/check-user",
                 method: "GET",
+                withCredentials: true,
             });
             setUser(true);
         } catch (error) {
