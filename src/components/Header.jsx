@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { DarkMode } from "./ui/DarkMode";
 import ProductSearch from "./Product/ProductSearch";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/features/authSlice";
+// import { useDispatch } from "react-redux";
+// import { logout } from "../redux/features/authSlice";
 
 export const Header = () => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(logout());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(logout());
+    // }, []);
 
 
     return (
