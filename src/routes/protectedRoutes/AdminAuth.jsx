@@ -17,7 +17,6 @@ export const AdminAuth = ({ children }) => {
             setAdmin(true);
         } catch (error) {
             navigate("/login");
-            console.log(error);
         }
     };
 

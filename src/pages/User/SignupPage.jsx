@@ -116,15 +116,15 @@ function SignupPage() {
                 method: "POST",
                 data: data,
             });
-           
+
             const email = response.data.email
             const res = await axiosInstance({
                 url: '/user/otp-sender',
                 method: "POST",
-                data: {email},
+                data: { email },
             });
             toast.success("An OTP has been sent to your registered email. Please check your inbox.");
-            navigate('/verify-otp',  { replace: true });
+            navigate('/verify-otp', { replace: true });
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
                 toast.error(error.response.data.error);

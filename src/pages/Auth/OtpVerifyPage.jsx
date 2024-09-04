@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
@@ -13,12 +13,12 @@ function OtpVerifyPage() {
             const response = await axiosInstance({
                 url: `/user/otp-handler`,
                 method: 'POST',
-                data: {otp},
+                data: { otp },
             });
 
             if (response.data.success) {
                 toast.success('OTP verified successfully');
-                navigate('/login', { replace: true }); 
+                navigate('/login', { replace: true });
             } else {
                 toast.error('Invalid OTP. Please try again.');
             }
@@ -49,7 +49,7 @@ function OtpVerifyPage() {
                 </button>
             </div>
         </div>
-    )
+    );
 }
 
-export default OtpVerifyPage
+export default OtpVerifyPage;

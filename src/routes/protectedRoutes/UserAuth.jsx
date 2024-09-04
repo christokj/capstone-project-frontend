@@ -17,7 +17,6 @@ export const UserAuth = ({ children }) => {
             setUser(true);
         } catch (error) {
             navigate("/login");
-            console.log(error);
         }
     };
 

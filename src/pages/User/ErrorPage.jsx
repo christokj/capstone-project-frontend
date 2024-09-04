@@ -5,6 +5,6 @@ export const ErrorPage = () => {
   return <div className="min-h-screen w-full">
 
     <h1>404 Page not found</h1>
-    <Link to={'/'} >Home</Link>
+    <Link to={'/'} className="btn bg-main" >Home</Link>
   </div>;
 };

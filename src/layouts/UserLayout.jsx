@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { UserHeader } from "../components/User/UserHeader";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 
 export const UserLayout = () => {
     return (

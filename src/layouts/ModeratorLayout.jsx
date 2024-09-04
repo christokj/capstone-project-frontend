@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom"
-import { Footer } from "../components/Footer"
-import ModeratorHeader from "../components/Moderator/ModeratorHeader"
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
+import ModeratorHeader from "../components/Moderator/ModeratorHeader";
 
 
 export const ModeratorLayout = () => {

@@ -7,7 +7,7 @@ import { axiosInstance } from '../../config/axiosInstance';
 
 function PhotosUploader({ addedPhotos, onChange }) {
     const [photoLink, setPhotoLink] = useState('');
-    
+
     async function addPhotoByLink(ev) {
         ev.preventDefault();
         const { data: filename } = await axiosInstance({
@@ -20,18 +20,18 @@ function PhotosUploader({ addedPhotos, onChange }) {
         });
         setPhotoLink('');
     }
- function uploadPhoto(ev) {
+    function uploadPhoto(ev) {
         const files = ev.target.files;
         const data = new FormData();
         for (let i = 0; i < files.length; i++) {
             data.append('photos', files[i]);
         }
-       axiosInstance({
-        url: '/moderator/upload',
-        method: 'post',
-        data,
-        headers: { 'Content-type':'multipart/form-data' }
-       }).then(response => {
+        axiosInstance({
+            url: '/moderator/upload',
+            method: 'post',
+            data,
+            headers: { 'Content-type': 'multipart/form-data' }
+        }).then(response => {
             const { data: filenames } = response;
             onChange(prev => {
                 return [...prev, ...filenames];

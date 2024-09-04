@@ -6,13 +6,13 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/features/authSlice";
 
 export const Header = () => {
-   
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(logout());
-    }, [])
-    
+    }, []);
+
 
     return (
         <>

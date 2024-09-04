@@ -51,15 +51,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "products",
-                element: <ProductsPage />,  
+                element: <ProductsPage />,
             },
             {
                 path: "about",
-                element: <AboutPage/>,
+                element: <AboutPage />,
             },
             {
                 path: "contact",
-                element: <ContactPage/> ,
+                element: <ContactPage />,
             },
             {
                 path: "login",
@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "moderator-login",
-                element: <ModeratorSignUpPage/>
+                element: <ModeratorSignUpPage />
             },
             {
                 path: "product",
@@ -101,15 +101,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: "products",
-                element: <ProductsPage />,  
+                element: <ProductsPage />,
             },
             {
                 path: "about",
-                element: <AboutPage/>,
+                element: <AboutPage />,
             },
             {
                 path: "contact",
-                element: <ContactPage/> ,
+                element: <ContactPage />,
             },
             {
                 path: "cart",
@@ -129,7 +129,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "update-user",
-                element: <ProfileEditPage/>
+                element: <ProfileEditPage />
             },
             {
                 path: "product",
@@ -143,69 +143,69 @@ export const router = createBrowserRouter([
             <ModeratorAuth>
                 <ModeratorLayout />
             </ModeratorAuth>
-            ),
-            children: [
-                {
-                    path: "",
-                    element: <ModeratorHomePage/>
-                },
-                {
-                    path: "add-product",
-                    element: <AddProductPage/>
-                },
-                {
-                    path: "show-products",
-                    element: <ProductsByModeratorPage />,
-                },
-                {
-                    path: "add-category",
-                    element: <AddCategoryPage/>
-                },
-                {
-                    path: "show-category",
-                    element: <ShowCategory/>
-                },
-                {
-                    path: "moderator-profile",
-                    element: <ModeratorProfilePage/>
-                },
-                {
-                    path: "update-profile",
-                    element: <ModeratorProfileEditPage/>
-                }
-            ]
+        ),
+        children: [
+            {
+                path: "",
+                element: <ModeratorHomePage />
+            },
+            {
+                path: "add-product",
+                element: <AddProductPage />
+            },
+            {
+                path: "show-products",
+                element: <ProductsByModeratorPage />,
+            },
+            {
+                path: "add-category",
+                element: <AddCategoryPage />
+            },
+            {
+                path: "show-category",
+                element: <ShowCategory />
+            },
+            {
+                path: "moderator-profile",
+                element: <ModeratorProfilePage />
+            },
+            {
+                path: "update-profile",
+                element: <ModeratorProfileEditPage />
+            }
+        ]
     },
     {
         path: "admin",
         element: (
             <AdminAuth >
-                <AdminLayout/>
+                <AdminLayout />
             </AdminAuth>
         ),
         children: [
             {
                 path: "",
-                element: <AdminHomePage/>
+                element: <AdminHomePage />
             },
             {
                 path: "users",
-                element: <AdminUsersPage/>
+                element: <AdminUsersPage />
             },
             {
                 path: "moderators",
-                element: <AdminModeratorsPage/>
+                element: <AdminModeratorsPage />
             },
             {
                 path: "products",
-                element: <AdminProductsPage/>
+                element: <AdminProductsPage />
             },
             {
                 path: "category",
-                element: <AdminCategoryPage/>
+                element: <AdminCategoryPage />
             },
             {
                 path: "add-category",
-                element: <AddCategoryPage/>
+                element: <AddCategoryPage />
             },
         ]
     }

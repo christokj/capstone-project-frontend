@@ -1,11 +1,11 @@
-import React from 'react'
-import ShowCart from '../../components/Cart/ShowCart'
+import React from 'react';
+import ShowCart from '../../components/Cart/ShowCart';
 
 function CartPage() {
-    
+
   return (
     <div>
-        <ShowCart/>
+      <ShowCart />
     </div>
   );
 }

@@ -26,7 +26,6 @@ function LoginPage() {
     });
 
     const handleLoginSubmit = async (values) => {
-       console.log(values)
         try {
             const response = await axiosInstance({
                 url: `/${values.role}/login`,
@@ -50,10 +49,10 @@ function LoginPage() {
                         const res = await axiosInstance({
                             url: '/user/otp-sender',
                             method: "POST",
-                            data: {email},
+                            data: { email },
                         });
                         toast.success("Please verify your account, An OTP has been sent to your registered email.");
-                        navigate('/verify-otp',  { replace: true });
+                        navigate('/verify-otp', { replace: true });
                     } catch (error) {
                         if (error.response && error.response.data && error.response.data.error) {
                             toast.error(error.response.data.error);
@@ -65,7 +64,6 @@ function LoginPage() {
                     }
                 }
                 toast.error(error.response.data.message || 'Login failed');
-                console.log(error.response.data.message)
             } else {
                 toast.error('An unexpected error occurred. Please use another password and email');
             }

@@ -9,9 +9,8 @@ export const store = configureStore({
 
 
 const token = localStorage.getItem('token');
-console.log(token)
 if (token) {
-    
+
     store.dispatch(loginSuccess({ token }));
 }
 

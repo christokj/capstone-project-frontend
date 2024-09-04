@@ -6,7 +6,7 @@ const ValueProviderComponent = ({ children }) => {
 
   return (
     <MyContext.Provider value={{ value, setValue }}>
-      {children} 
+      {children}
     </MyContext.Provider>
   );
 };

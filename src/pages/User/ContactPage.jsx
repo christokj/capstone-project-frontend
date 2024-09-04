@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import '../../styles/ContactPage.css'
+import React, { useContext } from 'react';
+import '../../styles/ContactPage.css';
 import ContactForm from '../../components/Home/ContactForm';
 import SocialMedia from '../../components/Home/SocialMedia';
 import { MyContext } from '../../components/Context/Context';

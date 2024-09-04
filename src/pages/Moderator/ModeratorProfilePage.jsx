@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { axiosInstance } from '../../config/axiosInstance'
-import toast from 'react-hot-toast'
+import React, { useEffect, useState } from 'react';
+import { axiosInstance } from '../../config/axiosInstance';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 function ModeratorProfilePage() {
 
     const [moderatorData, setModeratorData] = useState(null);
-    
+
     const fetchData = async () => {
         try {
             if (!moderatorData) {
@@ -25,10 +25,10 @@ function ModeratorProfilePage() {
     if (!moderatorData) {
         return <div>Loading...</div>;
     }
-        
-  return (
-  
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+
+    return (
+
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
             <div className="w-full max-w-3xl my-10 bg-white shadow-lg rounded-3xl overflow-hidden">
                 <div className="p-8">
                     <div className="flex items-center">
@@ -57,7 +57,7 @@ function ModeratorProfilePage() {
                                 <span className="text-gray-600">Shop Name:</span>
                                 <span className="text-gray-800">{moderatorData?.shopName}</span>
                             </div>
-                           
+
                         </div>
                     </div>
 
@@ -71,9 +71,9 @@ function ModeratorProfilePage() {
                     </div>
                 </div>
             </div>
-            </div>
-     
-  )
+        </div>
+
+    );
 }
 
-export default ModeratorProfilePage
+export default ModeratorProfilePage;

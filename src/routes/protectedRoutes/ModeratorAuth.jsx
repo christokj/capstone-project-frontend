@@ -17,7 +17,6 @@ export const ModeratorAuth = ({ children }) => {
             setModerator(true);
         } catch (error) {
             navigate("/login");
-            console.log(error);
         }
     };
 

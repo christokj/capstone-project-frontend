@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import CartIcon from "./CartIcon";
 
 export const UserHeader = () => {
-   
+
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     return (

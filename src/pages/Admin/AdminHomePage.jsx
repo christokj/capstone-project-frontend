@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { axiosInstance } from '../../config/axiosInstance'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../config/axiosInstance';
 
 function AdminHomePage() {
 
@@ -15,7 +15,7 @@ function AdminHomePage() {
   useEffect(() => {
 
     fetchDetails();
-  }, [data])
+  }, [data]);
 
 
   return (
@@ -71,11 +71,11 @@ function AdminHomePage() {
             <h2 className="text-lg font-semibold mb-4">Total Moderator</h2>
             <p className="text-2xl font-bold">{data.moderatorCount}</p>
           </div>
-        
+
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default AdminHomePage
+export default AdminHomePage;

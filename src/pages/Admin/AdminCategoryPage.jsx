@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom';
 function AdminCategoryPage() {
     const [categories, setCategories] = useState([]);
 
-  const navigate = useNavigate();
-  // Fetch categories from the server when the component mounts
-  const fetchCategories = async () => {
-      try {
-          const response = await axiosInstance.get('/user/products-category');
-          setCategories(response.data.data);
-          console.log(response.data.data);
+    const navigate = useNavigate();
+    // Fetch categories from the server when the component mounts
+    const fetchCategories = async () => {
+        try {
+            const response = await axiosInstance.get('/user/products-category');
+            setCategories(response.data.data);
         } catch (error) {
             toast.error('Failed to fetch categories');
         }
@@ -32,7 +31,7 @@ function AdminCategoryPage() {
     };
 
     const handleCategory = () => {
-        navigate('/admin/add-category',{ state: { role: 'Admin' } });
+        navigate('/admin/add-category', { state: { role: 'Admin' } });
     };
 
     if (!categories) {
@@ -60,9 +59,9 @@ function AdminCategoryPage() {
                                         <td>{category._id}</td>
                                         <td>{category.name}</td>
                                         <td>
-                                            <img 
-                                                src={category.image[0]} 
-                                                alt={category.name} 
+                                            <img
+                                                src={category.image[0]}
+                                                alt={category.name}
                                                 className="w-16 h-16 object-cover"
                                             />
                                         </td>

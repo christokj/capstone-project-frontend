@@ -25,8 +25,8 @@ function ModeratorSignUpPage() {
             .required("Password is required")
             .min(8, "Password must be at least 8 characters long")
             .max(100, "Password cannot exceed 100 characters")
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/, 
-                     "Password should contain a minimum of 8 characters, a small letter, and a capital letter"),
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/,
+                "Password should contain a minimum of 8 characters, a small letter, and a capital letter"),
         confirmPassword: yup.string()
             .required("Please confirm your password")
             .oneOf([yup.ref('password'), null], "Passwords must match"),
@@ -41,10 +41,10 @@ function ModeratorSignUpPage() {
             const response = await axiosInstance({
                 url: "/moderator/create",
                 method: "POST",
-                data: {data},
+                data: { data },
             });
             toast.success("Account creation successfull")
-            navigate('/login', { replace: true }); 
+            navigate('/login', { replace: true });
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
                 toast.error(error.response.data.error);

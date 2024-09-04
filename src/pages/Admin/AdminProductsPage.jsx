@@ -9,7 +9,6 @@ function AdminProductsPage() {
         try {
             const response = await axiosInstance.get('/user/show-products');
             setProducts(response.data.data);
-            console.log(response.data.data)
         } catch (error) {
             toast.error('Failed to fetch products');
         }
@@ -17,7 +16,7 @@ function AdminProductsPage() {
 
     useEffect(() => {
         // Fetch products from the server when the component mounts
-       
+
         fetchProducts();
     }, []);
 
@@ -56,15 +55,15 @@ function AdminProductsPage() {
                                     <tr key={product._id}>
                                         <td>{product.id}</td>
                                         <td>
-                                            <img 
-                                                src={product.image[0]} 
-                                                alt={product.name} 
+                                            <img
+                                                src={product.image[0]}
+                                                alt={product.name}
                                                 className="w-16 h-16 object-cover"
                                             />
                                         </td>
                                         <td>{product.title}</td>
                                         <td>{product.category}</td>
-                                        <td>{Math.round(product.price * 83)}</td>    
+                                        <td>{Math.round(product.price * 83)}</td>
                                         <td>
                                             <button
                                                 className="btn-sm bg-red-400 gap-2 btn"

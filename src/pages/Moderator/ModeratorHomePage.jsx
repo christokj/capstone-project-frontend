@@ -33,7 +33,7 @@ const ModeratorHomePage = () => {
                     >
                         Add category
                     </NavLink>
-                    <NavLink 
+                    <NavLink
                         to="/moderator/show-products"
                         className="bg-yellow-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-700"
                     >

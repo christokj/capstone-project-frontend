@@ -21,12 +21,11 @@ function ShowProduct() {
                     url: '/user/add-cart',
                     method: "POST",
                     data: { productId: id, quantity: 1 },
-                    withCredentials: true 
+                    withCredentials: true
                 });
                 toast.success("Product added to cart");
                 navigate('/user/cart', { replace: true });
             } catch (error) {
-                console.log(error);
                 toast.error("Product not added");
             }
         } else {
@@ -34,7 +33,6 @@ function ShowProduct() {
             toast.error("Please login to add product to cart");
         }
     };
-console.log(product)
     useEffect(() => {
         if (location.state && location.state.product) {
             setProduct(location.state.product);
@@ -43,19 +41,19 @@ console.log(product)
 
     if (!product) {
         return <div className="text-center">Products not found</div>;
-    } 
-
-        return (
-            <div className="max-w-3xl mx-auto p-4">
-                <Card
-                    image={product.image} 
-                    title={product.title}
-                    description={product.description}
-                    price={product.price}
-                    onButtonClick={() => handleClick(product._id)}
-                />
-            </div>
-        );
     }
+
+    return (
+        <div className="max-w-3xl mx-auto p-4">
+            <Card
+                image={product.image}
+                title={product.title}
+                description={product.description}
+                price={product.price}
+                onButtonClick={() => handleClick(product._id)}
+            />
+        </div>
+    );
+}
 
 export default ShowProduct;

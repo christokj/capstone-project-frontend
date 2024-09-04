@@ -10,12 +10,11 @@ function ShowProducts() {
     const [data, setData] = useState([]);
 
     const location = useLocation();
-    const { id, searchValue } = location.state || {};  
+    const { id, searchValue } = location.state || {};
 
     const navigate = useNavigate();
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    console.log(isAuthenticated, useSelector((state) => state.auth.user), useSelector((state) => state.auth.token))
     useEffect(() => {
         // Function to fetch all products
         const fetchAllProducts = async () => {
@@ -26,7 +25,6 @@ function ShowProducts() {
                 });
                 setData(response.data.data);
             } catch (error) {
-                console.log(error);
                 toast.error("Failed fetching products");
             }
         };
@@ -40,7 +38,6 @@ function ShowProducts() {
                 });
                 setData(response.data.data);
             } catch (error) {
-                console.log(error);
                 toast.error("Failed fetching category");
             }
         };
@@ -53,9 +50,7 @@ function ShowProducts() {
                     method: "GET",
                 });
                 setData(response.data.data);
-                console.log(response.data.data)
             } catch (error) {
-                console.log(error);
                 toast.error("Failed fetching product");
             }
         };
@@ -68,44 +63,43 @@ function ShowProducts() {
         } else {
             fetchAllProducts();
         }
-    }, [id, searchValue]); 
+    }, [id, searchValue]);
 
     const handleClick = async (id) => {
         if (isAuthenticated) {
-        try {
-            const response = await axiosInstance({
-                url: '/user/add-cart',
-                method: "POST",
-                data: { productId: id, quantity: 1 },
-                withCredentials: true // Ensure cookies are sent with the request
-            });
-            setData(response.data.data);
-            toast.success("Product added to cart");
-            navigate('/user/cart', {replace: true});
-        } catch (error) {
-            console.log(error);
-            toast.error("Product not added");
+            try {
+                const response = await axiosInstance({
+                    url: '/user/add-cart',
+                    method: "POST",
+                    data: { productId: id, quantity: 1 },
+                    withCredentials: true 
+                });
+                setData(response.data.data);
+                toast.success("Product added to cart");
+                navigate('/user/cart', { replace: true });
+            } catch (error) {
+                toast.error("Product not added");
+            }
+        } else {
+            navigate("/login")
+            toast.error("Please login to add products to cart");
         }
-    } else {
-        navigate("/login")
-        toast.error("Please login to add products to cart");
-    }
     }
 
     if (data.length === 0) {
         return <div>Please try these words : Mens, Backpack, Silver, Gold etc...</div>;
     }
 
-   
+
     return (
         <div className='card shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
             {data.map((item) => (
                 <ProductCard
-                key={item._id}
-                item={item}
-                handleClick={handleClick}
-                isAuthenticated={isAuthenticated}
-            />
+                    key={item._id}
+                    item={item}
+                    handleClick={handleClick}
+                    isAuthenticated={isAuthenticated}
+                />
             ))}
         </div>
     );

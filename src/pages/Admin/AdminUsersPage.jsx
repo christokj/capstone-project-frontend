@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 
 function AdminUsersPage() {
 
@@ -66,7 +65,7 @@ function AdminUsersPage() {
                                         <td>{user.status}</td>
                                         <td>
                                             <button className={`btn-sm gap-2 btn ${user.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`} onClick={() => handleStatus(user._id)}>
-                                            {user.status === 'active' ? 'Freeze' : 'Activate'}
+                                                {user.status === 'active' ? 'Freeze' : 'Activate'}
                                             </button>
                                         </td>
                                     </tr>
@@ -83,7 +82,7 @@ function AdminUsersPage() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default AdminUsersPage;

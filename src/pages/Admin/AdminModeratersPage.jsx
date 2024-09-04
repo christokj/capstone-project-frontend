@@ -24,7 +24,7 @@ function AdminModeratorsPage() {
         try {
             await axiosInstance.put(`/admin/update-moderator-status/${moderatorId}`);
             toast.success('Status updated successfully');
-            
+
             setModerators((prevModerators) =>
                 prevModerators.map((moderator) =>
                     moderator._id === moderatorId

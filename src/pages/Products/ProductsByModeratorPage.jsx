@@ -20,18 +20,16 @@ function ProductsByModeratorPage() {
             });
 
             setData(response.data.data);
-                setIsChecked(response.data.data.length > 0); 
-        
+            setIsChecked(response.data.data.length > 0);
+
         } catch (error) {
-            console.log(error);
             toast.error("Failed fetching products");
         }
     };
     const handleUpdate = async (id) => {
         try {
-            navigate('/moderator/add-product', {replace: true, state: { id }});
+            navigate('/moderator/add-product', { replace: true, state: { id } });
         } catch (error) {
-            console.log(error);
             toast.error("Error ");
         }
     }
@@ -41,17 +39,17 @@ function ProductsByModeratorPage() {
                 url: `/moderator/remove-product/${productId}`,
                 method: "DELETE",
             });
-            
+
             toast.success("Product removed");
-            navigate('/moderator', {replace: true})
+            navigate('/moderator', { replace: true })
         } catch (error) {
-        
+
             toast.error("Failed to remove product");
         }
     }
     useEffect(() => {
         fetchYourProducts();
-    }, []); 
+    }, []);
 
     return (
         <>

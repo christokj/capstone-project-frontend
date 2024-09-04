@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 import ShowProducts from '../../components/Product/ShowProducts';
 
 function ProductsPage() {
-   
-  
+
   return (
     <div >
-        <ShowProducts id={null}/>
+      <ShowProducts id={null} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 function ModeratorProfileEditPage() {
 
     const navigate = useNavigate();
-    
+
     const [moderator, setModerator] = useState({
         fullname: '',
         email: '',
@@ -23,14 +23,14 @@ function ModeratorProfileEditPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const response = await axiosInstance({
                 url: "/moderator/update-moderator-details",
                 method: "PUT",
                 data: moderator,
             });
-    
+
             toast.success("Profile updated successfully");
             navigate('/moderator', { replace: true });
         } catch (error) {
@@ -39,7 +39,6 @@ function ModeratorProfileEditPage() {
             } else {
                 toast.error("An error occurred while updating the profile.");
             }
-            console.log(error);
         }
     };
 
@@ -58,8 +57,8 @@ function ModeratorProfileEditPage() {
         fetchModeratorDetails();
     }, []);
 
-  return (
-    <div className="flex justify-center items-center my-5 ">
+    return (
+        <div className="flex justify-center items-center my-5 ">
             <div className="card w-full max-w-lg bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Edit Profile</h2>
@@ -143,7 +142,7 @@ function ModeratorProfileEditPage() {
                 </div>
             </div>
         </div>
-  )
+    );
 }
 
-export default ModeratorProfileEditPage
+export default ModeratorProfileEditPage;

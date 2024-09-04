@@ -6,9 +6,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const ProfileEditPage = () => {
 
     const navigate = useNavigate();
-    
+
     const location = useLocation();
-   
+
     const [user, setUser] = useState({
         fullname: '',
         email: '',
@@ -24,16 +24,15 @@ const ProfileEditPage = () => {
     });
 
     useEffect(() => {
-        
-        if(location.state && location.state.userData) {
+
+        if (location.state && location.state.userData) {
             const { userData } = location.state;
             setUser(userData);
-            console.log(userData)
         }
-    
+
     }, [location.state])
-    
-    
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.includes("address")) {
@@ -52,14 +51,14 @@ const ProfileEditPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const response = await axiosInstance({
                 url: "/user/update-user-details",
                 method: "PUT",
                 data: user,
             });
-    
+
             toast.success("Profile updated successfully");
             navigate('/user/profile', { replace: true });
         } catch (error) {
@@ -68,10 +67,9 @@ const ProfileEditPage = () => {
             } else {
                 toast.error("An error occurred while updating the profile.");
             }
-            console.log(error);
         }
     };
-    
+
 
     return (
         <div className="flex justify-center items-center my-5 ">

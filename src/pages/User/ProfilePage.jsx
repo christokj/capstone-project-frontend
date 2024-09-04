@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/features/authSlice';
 
 function ProfilePage() {
 
-    const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-    const handleClick = async () => {
-        try {
-            const response = await axiosInstance({
-                url: "/user/logout",
-                method: "GET",
-            });
-            localStorage.removeItem('token');
-            dispatch(logout());
-            toast.success("Logout successful");
-            navigate('/', { replace: true })
-        } catch (error) {
-            console.log(error);
-            toast.error("Logout failed");
-        }
+  const navigate = useNavigate();
+  const handleClick = async () => {
+    try {
+      const response = await axiosInstance({
+        url: "/user/logout",
+        method: "GET",
+      });
+      localStorage.removeItem('token');
+      dispatch(logout());
+      toast.success("Logout successful");
+      navigate('/', { replace: true })
+    } catch (error) {
+      toast.error("Logout failed");
     }
+  }
 
-    const handleUpdate = async () => {
+  const handleUpdate = async () => {
 
-      navigate('/user/update-user', { state: { userData } })
+    navigate('/user/update-user', { state: { userData } })
 
+  }
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axiosInstance({
+        url: "/user/fetch-user-data",
+        method: "GET",
+      });
+
+      if (!response) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      setUserData(response?.data?.data)
+
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error("Failed to fectch user data");
     }
+  }
 
-        const fetchUserData = async () => {
-            try {
-                const response = await axiosInstance({
-                    url: "/user/fetch-user-data",
-                    method: "GET",
-                });
-    
-                if (!response) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-               setUserData(response?.data?.data)
-               
-            } catch (error) {
-                console.error('Error:', error);
-                toast.error("Failed to fectch user data");
-            }
-        }
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
-        useEffect(() => {
-        fetchUserData();
-        }, [])
-        
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -93,7 +92,7 @@ function ProfilePage() {
           <div className="mt-6">
             <h3 className="text-lg font-semibold text-gray-800">Settings</h3>
             <div className="mt-4 space-y-4">
-              <button  onClick={handleUpdate} className="btn bg-main w-full">Edit Profile</button>
+              <button onClick={handleUpdate} className="btn bg-main w-full">Edit Profile</button>
               <button onClick={handleClick} className="btn btn-error w-full">Log Out</button>
             </div>
           </div>
@@ -103,4 +102,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage
+export default ProfilePage;

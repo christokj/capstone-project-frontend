@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const AddProductPage = () => {
 
   const location = useLocation();
-  const { id } = location.state || {}; 
+  const { id } = location.state || {};
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -18,24 +18,23 @@ const AddProductPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!id) {
-        return;
+      return;
     }
     axiosInstance.get('/moderator/show-product/' + id)
-        .then(response => {
-            const { data } = response;
-            setTitle(data.product.title);
-            setDescription(data.product.description);
-            setAddedPhotos(data.product.image);
-            setCategory(data.product.category);
-            setPrice(data.product.price);
-        })
-        .catch(error => {
-            toast.error('Failed to fetch product details');
-            console.log(error); 
-        });
-}, [id]);
+      .then(response => {
+        const { data } = response;
+        setTitle(data.product.title);
+        setDescription(data.product.description);
+        setAddedPhotos(data.product.image);
+        setCategory(data.product.category);
+        setPrice(data.product.price);
+      })
+      .catch(error => {
+        toast.error('Failed to fetch product details');
+      });
+  }, [id]);
 
-  
+
   async function saveProduct(ev) {
     ev.preventDefault();
     const productData = {
@@ -48,20 +47,20 @@ const AddProductPage = () => {
     if (id) {
       // update
       await axiosInstance.put('/moderator/update-product', {
-          id, ...productData
+        id, ...productData
       });
       toast.success('Product updated successfully');
-      navigate('/moderator', { replace: true }); 
-  } else {
+      navigate('/moderator', { replace: true });
+    } else {
       // new product    
       await axiosInstance({
         url: "moderator/add-product",
         method: "POST",
         data: productData,
-      })  
+      })
       toast.success('Product added successfully');
-      navigate('/moderator', { replace: true }); 
-  }
+      navigate('/moderator', { replace: true });
+    }
   }
 
   return (
@@ -70,12 +69,12 @@ const AddProductPage = () => {
         <label htmlFor="title" className="label">
           <span className="label-text">Title</span>
         </label>
-        <input 
-          name="title" 
-          type="text" 
+        <input
+          name="title"
+          type="text"
           value={title}
           placeholder='Title'
-          className="input input-bordered" 
+          className="input input-bordered"
           onChange={ev => setTitle(ev.target.value)}
         />
       </div>
@@ -83,12 +82,12 @@ const AddProductPage = () => {
         <label htmlFor="description" className="label">
           <span className="label-text">Description</span>
         </label>
-        <input 
-          name="description" 
-          type="text" 
+        <input
+          name="description"
+          type="text"
           value={description}
           placeholder='Description'
-          className="input input-bordered" 
+          className="input input-bordered"
           onChange={ev => setDescription(ev.target.value)}
         />
       </div>
@@ -96,12 +95,12 @@ const AddProductPage = () => {
         <label htmlFor="price" className="label">
           <span className="label-text">Price</span>
         </label>
-        <input 
-          name="price" 
-          type="number" 
+        <input
+          name="price"
+          type="number"
           value={price}
           placeholder='Price'
-          className="input input-bordered" 
+          className="input input-bordered"
           onChange={ev => setPrice(ev.target.value)}
         />
       </div>
@@ -109,17 +108,17 @@ const AddProductPage = () => {
         <label htmlFor="category" className="label">
           <span className="label-text">Category</span>
         </label>
-        <input 
-          name="category" 
-          type="text" 
+        <input
+          name="category"
+          type="text"
           value={category}
           placeholder='Category'
-          className="input input-bordered" 
+          className="input input-bordered"
           onChange={ev => setCategory(ev.target.value)}
         />
       </div>
       <div className="form-control">
-      <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
+        <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
       </div>
       <button type="submit" className="btn bg-main w-full">
         Save Product
