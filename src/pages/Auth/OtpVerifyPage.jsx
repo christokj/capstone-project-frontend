@@ -5,12 +5,11 @@ import toast from 'react-hot-toast';
 
 function OtpVerifyPage() {
     const location = useLocation()
+    const searchParams = new URLSearchParams(location.search);
+    const email = searchParams.get('email');
     const [otp, setOtp] = useState('');
     const navigate = useNavigate();
-    let email = ''
-    if (location.state && location.state.email) {
-        email = location.state.email; // Access email from state
-    }
+   
     const handleVerifyOtp = async () => {
         try {
             const response = await axiosInstance({

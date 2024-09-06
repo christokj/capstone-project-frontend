@@ -54,7 +54,7 @@ function LoginPage() {
                         });
                         console.log(email)
                         toast.success("Please verify your account, An OTP has been sent to your registered email.");
-                        navigate('/verify-otp',  { state: { email }, replace: true });
+                        navigate(`/verify-otp?email=${email}`);
                     } catch (error) {
                         if (error.response && error.response.data && error.response.data.error) {
                             toast.error(error.response.data.error);

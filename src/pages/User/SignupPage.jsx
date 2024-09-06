@@ -125,7 +125,7 @@ function SignupPage() {
                     data: { email },
                 });
                 toast.success("An OTP has been sent to your registered email. Please check your inbox.");
-                navigate('/verify-otp', { state: { email }, replace: true });
+                navigate(`/verify-otp?email=${email}`);
             }
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
