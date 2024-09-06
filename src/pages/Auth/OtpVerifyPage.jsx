@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
 
 function OtpVerifyPage() {
-
+    const location = useLocation()
     const [otp, setOtp] = useState('');
     const navigate = useNavigate();
-
+    let email = ''
+    if (location.state && location.state.email) {
+        email = location.state.email; // Access email from state
+    }
     const handleVerifyOtp = async () => {
         try {
             const response = await axiosInstance({
                 url: `/user/otp-handler`,
                 method: 'POST',
-                data: { otp },
+                data: { otp, email },
             });
 
             if (response.data.success) {

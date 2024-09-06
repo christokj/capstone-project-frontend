@@ -7,7 +7,7 @@ export const AdminAuth = ({ children }) => {
     const location = useLocation();
     const [admin, setAdmin] = useState();
 
-    const checkAdmin = async () => {
+    const checkAdmin = async () => { 
         try {
             const response = await axiosInstance({
                 url: "/admin/check-admin",

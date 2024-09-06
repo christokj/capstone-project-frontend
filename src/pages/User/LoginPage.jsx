@@ -20,7 +20,7 @@ function LoginPage() {
             .matches(/\S+@\S+\.\S+/, "Please enter a valid email"),
         password: yup.string()
             .required("Please enter your password")
-            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/, "Password should contain a minimum of 8 characters, a small letter, and a capital letter"),
+            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z\d!@#$%^&*(),.?":{}|<>]{8,}$/, "Password should contain a minimum of 8 characters, a small letter,  a capital letter and special characters (!@#$%^&.*)"),
         role: yup.string()
             .required("Please select your role")
     });
@@ -34,7 +34,7 @@ function LoginPage() {
                 withCredentials: true,
             });
 
-            let token = response?.data?.token
+            let token = response.data.token
 
             localStorage.setItem('token', token);
 
@@ -52,8 +52,9 @@ function LoginPage() {
                             method: "POST",
                             data: { email },
                         });
+                        console.log(email)
                         toast.success("Please verify your account, An OTP has been sent to your registered email.");
-                        navigate('/verify-otp', { replace: true });
+                        navigate('/verify-otp',  { state: { email }, replace: true });
                     } catch (error) {
                         if (error.response && error.response.data && error.response.data.error) {
                             toast.error(error.response.data.error);

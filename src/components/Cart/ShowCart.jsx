@@ -30,7 +30,6 @@ function ShowCart() {
                 method: "POST",
                 data: { products: cartData },
             });
-            // console.log(response.data, "=======response.data");
 
             const sessionId = response?.data?.sessionId;
             const result = stripe.redirectToCheckout({

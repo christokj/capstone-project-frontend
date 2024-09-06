@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const UserAuth = ({ children }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(false);
 
     const checkUser = async () => {
         try {
@@ -16,6 +16,7 @@ export const UserAuth = ({ children }) => {
             });
             setUser(true);
         } catch (error) {
+            console.log(error)
             navigate("/login");
         }
     };
