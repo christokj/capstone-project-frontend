@@ -37,10 +37,10 @@ console.log(response)
 console.log("Res from backend")
             const sessionId = response?.data?.sessionId;
             const result = stripe.redirectToCheckout({
-                sessionId: sessionId,
+                sessionId,
             });
         } catch (error) {
-            toast.error("Error");
+            toast.error("Error");   
             console.log(error);
         }
     };
