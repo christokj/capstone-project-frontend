@@ -33,9 +33,12 @@ console.log("Payment started")
                     "Content-Type":"application/json"
                 },
             });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              console.log(response)
             const body = await response.json()
     window.location.href = body.url
-console.log(response)
 console.log("Res from backend")
             const sessionId = response?.data?.sessionId;
             const result = stripe.redirectToCheckout({
@@ -43,7 +46,7 @@ console.log("Res from backend")
             });
         } catch (error) {
             toast.error("Error");   
-            console.log(error);
+            console.log('Error:', error);
         }
     };
 
