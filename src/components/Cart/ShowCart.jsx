@@ -34,12 +34,11 @@ console.log("Payment started")
                 },
             });
               console.log(response)
-            const body = await response.json()
-    window.location.href = body.url
+
 console.log("Res from backend")
             const sessionId = response?.data?.sessionId;
             const result = stripe.redirectToCheckout({
-                sessionId,
+                sessionId: sessionId,
             });
         } catch (error) {
             toast.error("Error");   
