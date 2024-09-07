@@ -33,6 +33,8 @@ console.log("Payment started")
                     "Content-Type":"application/json"
                 },
             });
+            const body = await response.json()
+    window.location.href = body.url
 console.log(response)
 console.log("Res from backend")
             const sessionId = response?.data?.sessionId;
