@@ -33,9 +33,6 @@ console.log("Payment started")
                     "Content-Type":"application/json"
                 },
             });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-              }
               console.log(response)
             const body = await response.json()
     window.location.href = body.url
