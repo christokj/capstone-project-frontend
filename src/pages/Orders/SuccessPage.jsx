@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function SuccessPage() {
   return (
@@ -24,7 +25,7 @@ function SuccessPage() {
         <p className="text-gray-600 mb-6">
           Thank you for your payment! Your transaction has been completed successfully.
         </p>
-        <button className="btn bg-main w-full">Go to Dashboard</button>
+        <Link to={"/"} className="btn bg-main w-full">Go to Dashboard</Link>
         <button className="btn btn-outline w-full mt-2">View Receipt</button>
       </div>
     </div>

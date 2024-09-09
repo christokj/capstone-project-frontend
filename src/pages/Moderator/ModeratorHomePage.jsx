@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { MyContext } from '../../components/Context/Context';
 
 const ModeratorHomePage = () => {
+
+    const {value} = useContext(MyContext)
 
     const navigate = useNavigate();
 
@@ -12,9 +15,9 @@ const ModeratorHomePage = () => {
         });
     };
     return (
-        <section className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center">
-            <div className="w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <section className={`min-h-screen ${value ? "bg-black" : "bg-gray-50"} flex flex-col items-center justify-center`}>
+            <div className={`w-full max-w-4xl rounded-lg shadow-lg p-8 ${value ? "bg-gray-900" : "bg-white"}`}>
+                <h1 className="text-3xl font-bold  mb-4">
                     Welcome, Moderator
                 </h1>
                 <p className="text-gray-700 dark:text-gray-300 mb-6">

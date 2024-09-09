@@ -100,8 +100,8 @@ function ShowCategory() {
                                     </div>
                                 </div>
                                 <div className='flex mx-20'>
-                                    <div>{role === 'Moderator' && <div className='btn bg-main' onClick={() => handleRemove(item._id)}> Remove </div>}</div>
-                                    <div>{role === 'Moderator' && <div className='btn bg-main' onClick={() => handleClick(item._id)}> Update </div>}</div>
+                                    <div>{role === 'Moderator' && <div className='btn text-black bg-main' onClick={() => handleRemove(item._id)}> Remove </div>}</div>
+                                    <div>{role === 'Moderator' && <div className='btn text-black bg-main' onClick={() => handleClick(item._id)}> Update </div>}</div>
                                 </div>
                             </div>
                         ))}

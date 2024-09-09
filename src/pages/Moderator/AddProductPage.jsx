@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../config/axiosInstance';
 import PhotosUploader from '../../components/Moderator/PhotosUploader';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { MyContext } from '../../components/Context/Context';
 
 const AddProductPage = () => {
 
   const location = useLocation();
   const { id } = location.state || {};
+
+  const {value} = useContext(MyContext)
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -64,7 +67,7 @@ const AddProductPage = () => {
   }
 
   return (
-    <form onSubmit={saveProduct} className="space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 rounded-lg shadow-md">
+    <form onSubmit={saveProduct} className={`space-y-6 max-w-lg mx-auto p-6 mb-20 ${value ? "bg-gray-900" : "bg-gray-50"} bg-gray-50 rounded-lg shadow-md`}>
       <div className="form-control">
         <label htmlFor="title" className="label">
           <span className="label-text">Title</span>
@@ -120,7 +123,7 @@ const AddProductPage = () => {
       <div className="form-control">
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
       </div>
-      <button type="submit" className="btn bg-main w-full">
+      <button type="submit" className="btn bg-main text-black w-full">
         Save Product
       </button>
     </form>

@@ -7,7 +7,7 @@ import { MyContext } from '../../components/Context/Context';
 function ContactPage() {
 
     const { value, setValue } = useContext(MyContext);
-
+console.log(value)
     return (
         <div className={`md:flex mb-10 ${!value && "bg-gray-50"}`}>
             <div className='w-full mx-auto '>

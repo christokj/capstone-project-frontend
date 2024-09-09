@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../config/axiosInstance';
+import { MyContext } from '../../components/Context/Context';
 
 function AdminHomePage() {
 
   const [data, setData] = useState([]);
+
+  const {value} = useContext(MyContext)
 
   const fetchDetails = async () => {
 
@@ -19,10 +22,10 @@ function AdminHomePage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
-      <div className="w-64 bg-white shadow-md h-screen">
+    <div className={`min-h-screen  ${value ? "bg-black" : "bg-gray-100"} flex`}>
+      <div className={`w-64 shadow-md h-screen ${value ? "bg-gray-900" : "bg-gray-100"}`}>
         <div className="p-6">
-          <h2 className="text-2xl font-semibold text-gray-800">Admin Dashboard</h2>
+          <h2 className="text-2xl font-semibold text-dark-grey-500">Admin Dashboard</h2>
         </div>
         <nav className="p-6">
           <ul className="space-y-4">

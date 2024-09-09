@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PhotosUploader from '../../components/Moderator/PhotosUploader';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { MyContext } from '../../components/Context/Context';
 
 function AddCategoryPage() {
 
@@ -10,6 +11,8 @@ function AddCategoryPage() {
   const [categoryId, setCategoryId] = useState(null);
   const [role, setRole] = useState('moderator')
   const navigate = useNavigate();
+
+  const {value} = useContext(MyContext)
 
   const [category, setCategory] = useState('');
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -73,7 +76,7 @@ function AddCategoryPage() {
   }
 
   return (
-    <form onSubmit={saveProduct} className="space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 rounded-lg shadow-md">
+    <form onSubmit={saveProduct} className={`space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 ${value ? "bg-gray-900" : "bg-gray-50"} rounded-lg shadow-md`}>
 
       <div className="form-control">
         <label htmlFor="category" className="label">
@@ -92,7 +95,7 @@ function AddCategoryPage() {
       <div className="form-control">
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
       </div>
-      <button type="submit" className="btn bg-main w-full">
+      <button type="submit" className="btn text-black bg-main w-full">
         Save Product
       </button>
     </form>

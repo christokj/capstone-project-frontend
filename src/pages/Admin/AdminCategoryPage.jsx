@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../../components/Context/Context';
 
 function AdminCategoryPage() {
     const [categories, setCategories] = useState([]);
+
+  const {value} = useContext(MyContext)
 
     const navigate = useNavigate();
     // Fetch categories from the server when the component mounts
@@ -39,9 +42,9 @@ function AdminCategoryPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <div className="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
-                <h1 className="text-3xl font-bold mb-6">Manage Categories <button onClick={handleCategory} className='btn btn-sm bg-main mx-10'>Add Categories</button></h1>
+        <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6`}>
+            <div className={`max-w-6xl mx-auto ${value ? "bg-gray-900" : "bg-gray-100"} shadow-md rounded-lg p-6`}>
+                <h1 className="text-3xl font-bold mb-6 ">Manage Categories <button onClick={handleCategory} className='btn btn-sm text-black bg-main mx-10'>Add Categories</button></h1>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
@@ -67,7 +70,7 @@ function AdminCategoryPage() {
                                         </td>
                                         <td>
                                             <button
-                                                className="btn-sm bg-red-400 gap-2 btn"
+                                                className="btn-sm text-black bg-red-400 gap-2 btn"
                                                 onClick={() => handleDelete(category._id)}
                                             >
                                                 Delete

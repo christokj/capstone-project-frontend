@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProductCard from './ProductCard';
+import Skeleton from '../ui/Skeleton';
 
 function ShowProducts() {
 
@@ -92,12 +93,9 @@ function ShowProducts() {
     if (!data.length && searchValue) {
         if (!isChecked) {
             return (
-                <div className="flex w-52 flex-col gap-4 mx-auto my-2">
-                    <div className="skeleton h-32 w-full"></div>
-                    <div className="skeleton h-4 w-28"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                </div>
+                <div className=" flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
+                         <Skeleton/>
+            </div>
                 );
           }
 
@@ -109,14 +107,7 @@ function ShowProducts() {
 
         return (
             <div className=" flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
-            {Array.from({ length: 20 }).map((_, index) => (
-                <div key={index} className="flex w-52 flex-col gap-4 mx-auto my-2">
-                    <div className="skeleton h-40 w-full"></div>
-                    <div className="skeleton h-4 w-28"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                </div>
-            ))}
+          <Skeleton/>
         </div>
             )
 

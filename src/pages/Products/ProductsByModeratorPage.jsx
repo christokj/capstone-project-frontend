@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { axiosInstance } from '../../config/axiosInstance';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from '../../components/ui/Skeleton';
+import { MyContext } from '../../components/Context/Context';
 
 function ProductsByModeratorPage() {
 
@@ -11,6 +13,7 @@ function ProductsByModeratorPage() {
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+    const {value} = useContext(MyContext)
     const navigate = useNavigate();
     const fetchYourProducts = async () => {
         try {
@@ -51,10 +54,20 @@ function ProductsByModeratorPage() {
         fetchYourProducts();
     }, []);
 
+    if (!data.length) {
+
+        return (
+            <div className="flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
+          <Skeleton/>
+        </div>
+            )
+
+    } else {
+
     return (
         <>
             {isChecked ? (
-                <div className='card bg-base-100 shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
+                <div className=' card bg-base-100 shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
                     {data.map((item) => (
                         <div key={item._id} className="md:w-64 md:mx-auto mx-4">
                             <figure>
@@ -81,6 +94,7 @@ function ProductsByModeratorPage() {
             )}
         </>
     );
+}
 }
 
 export default ProductsByModeratorPage;

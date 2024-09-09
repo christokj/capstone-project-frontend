@@ -12,7 +12,7 @@ export const DarkMode = () => {
     useEffect(() => {
 
         setValue(isDarkMode)
-    }, [value]);
+    }, [isDarkMode]);
 
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);

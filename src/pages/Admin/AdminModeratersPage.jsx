@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { MyContext } from '../../components/Context/Context';
 
 function AdminModeratorsPage() {
 
     const [moderators, setModerators] = useState([]);
+
+  const {value} = useContext(MyContext)
 
     const fetchModerators = async () => {
         try {
@@ -43,8 +46,8 @@ function AdminModeratorsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <div className="max-w-6xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6`}>
+            <div className={`max-w-6xl mx-auto ${value ? "bg-gray-900" : "bg-gray-100"} shadow-md rounded-lg p-6`}>
                 <h1 className="text-3xl font-bold mb-6">Manage Moderators</h1>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
@@ -71,7 +74,7 @@ function AdminModeratorsPage() {
                                         <td>{moderator.status}</td>
                                         <td>
                                             <button
-                                                className={`btn-sm gap-2 btn ${moderator.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`}
+                                                className={`btn-sm text-black gap-2 btn ${moderator.status === 'active' ? 'bg-red-400' : 'bg-green-300'}`}
                                                 onClick={() => handleStatus(moderator._id)}
                                             >
                                                 {moderator.status === 'active' ? 'Freeze' : 'Activate'}

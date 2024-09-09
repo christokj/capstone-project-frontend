@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { MyContext } from './Context/Context';
+
 
 const handleOnClickFacebook = () => {
     window.open('https://m.facebook.com/profile.php/?id=100011657233419', '_blank');
@@ -10,14 +12,17 @@ const handleOnClickTwitter = () => {
 }
 
 const Footer = () => {
+
+    const { value, setValue } = useContext(MyContext);
+    
     return (
-        <section className="bg-gray-200 pt-16 pb-7 ">
+        <section className={`${value && "bg-black"}bg-gray-50 pt-16 pb-7 `}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 min-[1130px]:grid-cols-12 gap-8 lg:gap-0 pb-14 border-b-2 border-gray-200">
                     <div className="min-[1130px]:col-span-5 col-span-1 w-full min-[1130px]:max-w-full mx-auto">
                         <div className="flex flex-col max-sm:items-center gap-8 w-full ">
                             <div className="flex flex-col min-[470px]:flex-row items-center gap-3 w-full">
-                                <div className="relative  text-black focus-within:text-gray-900 max-sm:w-full">
+                                <div className="relative  text-dark-grey-500 focus-within:text-gray-900 max-sm:w-full">
                                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path
@@ -26,7 +31,7 @@ const Footer = () => {
                                         </svg>
                                     </div>
                                     <input type="text" id="default-search "
-                                        className="block w-full max-sm:min-w-full sm:max-w-xs pr-4 pl-12 py-2.5 text-base font-normal shadow-xs text-black bg-transparent border border-black rounded-lg placeholder-black focus:outline-none leading-relaxed"
+                                        className="block w-full max-sm:min-w-full sm:max-w-xs pr-4 pl-12 py-2.5 text-base font-normal shadow-xs text-dark-grey-500 bg-transparent border border-black rounded-lg placeholder-gray focus:outline-none leading-relaxed"
                                         placeholder="mail@trendiq.com" />
                                 </div>
                             </div>
@@ -34,47 +39,47 @@ const Footer = () => {
                     </div>
                     <div className="min-[1130px]:col-span-7 max-[1130px]:pt-10 lg:pl-14 col-span-1 w-full min-[1130px]:max-w-full mx-auto flex flex-col sm:flex-row justify-between gap-6 ">
                         <div className="">
-                            <h6 className="text-lg font-medium text-black mb-7 max-sm:text-center">Address</h6>
+                            <h6 className="text-lg font-medium text-dark-grey-500 mb-7 max-sm:text-center">Address</h6>
                             <ul className="flex flex-col gap-6">
                                 <li><p
-                                    className="text-base font-normal max-sm:text-center  text-black"> Thrissur, Kerala, India.</p>
+                                    className="text-base font-normal max-sm:text-center  text-dark-grey-500"> Thrissur, Kerala, India.</p>
                                 </li>
 
                             </ul>
                         </div>
                         <div className="">
-                            <h6 className="text-lg font-medium text-black mb-7 max-sm:text-center">Contact</h6>
+                            <h6 className="text-lg font-medium text-dark-grey-500 mb-7 max-sm:text-center">Contact</h6>
                             <ul className="flex flex-col gap-6">
                                 <li><p
-                                    className="text-base font-normal max-sm:text-center text-black whitespace-nowrap">+91 6282130289</p></li>
+                                    className="text-base font-normal max-sm:text-center text-dark-grey-500 whitespace-nowrap">+91 6282130289</p></li>
                                 <li><p
-                                    className="text-base font-normal max-sm:text-center text-black whitespace-nowrap ">support@trendiq.com</p></li>
+                                    className="text-base font-normal max-sm:text-center text-dark-grey-500 whitespace-nowrap ">support@trendiq.com</p></li>
                             </ul>
                         </div>
                         <div className="">
-                            <h6 className="text-lg font-medium text-black mb-7 max-sm:text-center">Office</h6>
+                            <h6 className="text-lg font-medium text-dark-grey-500 mb-7 max-sm:text-center">Office</h6>
                             <ul className="flex flex-col gap-6">
                                 <li><p
-                                    className="text-base font-normal max-sm:text-center text-black whitespace-nowrap ">Monday - Friday</p>
+                                    className="text-base font-normal max-sm:text-center text-dark-grey-500 whitespace-nowrap ">Monday - Friday</p>
                                 </li>
                                 <li><p
-                                    className="text-base font-normal max-sm:text-center text-black whitespace-nowrap">9AM - 7PM</p></li>
+                                    className="text-base font-normal max-sm:text-center text-dark-grey-500 whitespace-nowrap">9AM - 7PM</p></li>
 
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col-reverse gap-5 md:flex-row items-center first-letter:items-center justify-between pt-7">
-                    <p className="font-normal text-sm text-black">©<NavLink to={"/"}>trendiq</NavLink>2024, All rights reserved.</p>
+                    <p className="font-normal text-sm text-dark-grey-500">©<NavLink to={"/"}>trendiq</NavLink>2024, All rights reserved.</p>
                     <ul className="flex items-center gap-9">
                         <li><NavLink
-                            className="text-black text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Terms</NavLink>
+                            className="text-dark-grey-500 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Terms</NavLink>
                         </li>
                         <li><NavLink
-                            className="text-black text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Privacy</NavLink>
+                            className="text-dark-grey-500 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Privacy</NavLink>
                         </li>
                         <li><NavLink
-                            className="text-black text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Cookies</NavLink>
+                            className="text-dark-grey-500 text-sm font-normal transition-all duration-300 hover:text-indigo-600 focus-within:text-indigo-600 focus-within:outline-0">Cookies</NavLink>
                         </li>
                     </ul>
                     <div className="flex items-center gap-4">
