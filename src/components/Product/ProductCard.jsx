@@ -29,7 +29,7 @@ function ProductCard({ item, handleClick, isAuthenticated }) {
                 <span className="text-lg font-bold">₹{Math.round(item.price * 83)}</span>
                 <div className="card-actions justify-end">
                     <button
-                        className={`btn bg-main ${isAuthenticated ? 'block' : 'hidden'}`}
+                        className={`btn bg-main text-white ${isAuthenticated ? 'block' : 'hidden'}`}
                         onClick={() => handleClick(item._id)}
                     >
                         Add to cart

@@ -6,7 +6,7 @@ import { SiFsecure } from "react-icons/si";
 
 function OurFeatures() {
     return (
-        <div className='mt-10 flex flex-col md:flex-row justify-center gap-4 mb-10'>
+        <div className='mt-10 flex flex-col md:flex-row justify-center gap-4 mb-10 mx-5 '>
             <div className='w-full md:w-1/3 lg:w-[30%]'>
                 <div className="shadow-md mt-16 bg-gray-100 rounded-lg p-10">
                     <div className='flex gap-3'>

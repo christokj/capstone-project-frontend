@@ -30,7 +30,7 @@ function ProductSearch() {
             onKeyDown={handleKeyPress}
             onChange={handleInputChange}
             placeholder="Search for products"
-            className="hidden lg:block input bg-slate-50 input-bordered w-32 md:w-44 md:h-10"
+            className="input bg-slate-50 input-bordered w-44 md:w-56 md:h-10"
         />
     );
 }

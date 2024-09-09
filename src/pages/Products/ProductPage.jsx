@@ -39,9 +39,6 @@ function ShowProduct() {
         }
     }, [location.state]);
 
-    if (!product) {
-        return <div className="text-center">Products not found</div>;
-    }
 
     return (
         <div className="max-w-3xl mx-auto p-4">
