@@ -65,8 +65,8 @@ function ShowCategory() {
                     <div className='flex justify-center items-center '>
                         <div className="card bg-base-100 px-10 shadow-xl grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 cursor-pointer">
                             {Array.from({ length: 4 }).map((_, index) => (
-                                <div className='p-10'>
-                                    <div key={index} className="skeleton rounded-2xl mx-auto w-52 h-40 "></div>
+                                <div className='p-10' key={index}>
+                                    <div className="skeleton rounded-2xl mx-auto w-52 h-40 "></div>
                                 </div>
                             ))}
                         </div>

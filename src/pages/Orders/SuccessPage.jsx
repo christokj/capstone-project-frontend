@@ -1,7 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { axiosInstance } from '../../config/axiosInstance';
 
 function SuccessPage() {
+
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+
+  const sessionId = query.get('session_id');
+  const productName = query.get('product');
+  const productPrice = query.get('price');
+
+  // console.log(sessionId, productName, productPrice)
+  
+  useEffect(() => {
+
+    if (sessionId && productName && productPrice) {
+
+    axiosInstance({
+        url: "/payment/emailHandler",
+        method: "POST",
+        data: {sessionId, productName, productPrice}
+      })
+      .then((response) => {
+        console.log('Email handler response:', response);
+      })
+      .catch((error) => {
+        console.error('Error sending email handler request:', error);
+      });
+
+    }
+  }, [sessionId, productName, productPrice]);
+
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="text-center bg-white p-8 rounded-lg shadow-lg">
