@@ -41,12 +41,14 @@ function ShowProduct() {
 
 
     return (
-        <div className="max-w-3xl mx-auto p-4">
+        <div className="max-w-5xl mx-auto p-4">
             <Card
+                id={product._id}
                 image={product.image}
                 title={product.title}
                 description={product.description}
                 price={product.price}
+                reviews={product.reviews}
                 onButtonClick={() => handleClick(product._id)}
             />
         </div>
