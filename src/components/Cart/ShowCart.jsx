@@ -73,7 +73,7 @@ function ShowCart() {
                 {cartData.map((item) => (
                     <div key={item.productId} className="md:w-64  md:mx-auto mx-4">
                         <figure>
-                            <img src={item.productDetails.image} alt={item.productDetails.title} className='rounded-2xl w-52 h-40 hover:scale-105 transition duration-300 hover:shadow-2xl hover:opacity-90' />
+                            <img src={item.productDetails.image[0]} alt={item.productDetails.title} className='rounded-2xl w-52 h-40 hover:scale-105 transition duration-300 hover:shadow-2xl hover:opacity-90' />
                         </figure>
                         <div className="card-body">
                             <h4 className="truncate"></h4>
