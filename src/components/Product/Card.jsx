@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import { useSelector } from 'react-redux';
+import closeIcon from '../../assets/close.json'
+import Lottie from 'lottie-react';
 
 const Card = ({ id, image, title, description, price, reviews, onButtonClick }) => {
 
     const [review, setReview] = useState('')
     const [reviewList, setReviewList] = useState([]);
+
+    const [showImages, setShowImages] = useState(false);
+    const  [images, setImages] = useState([]);
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -24,7 +29,6 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
                 method: "POST",
                 data: { review, id }
             });
-            console.log("Review submitted successfully");
 
             const values = await axiosInstance({
                 url: `/user/showReview/${id}`,
@@ -32,10 +36,29 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
             })
             setReviewList(values.data.data)
             setReview('');
-            console.log(values.data.data)
         } catch (error) {
             console.error("Error submitting review:", error);
         }
+    }
+    const showPhotos = (images) => {
+
+        setShowImages(true)
+        setImages(images)
+    }
+
+    if (showImages) {
+        return (
+            <div className='w-full'>
+                <div>
+                <Lottie className='w-10 cursor-pointer fixed' onClick={(() => setShowImages(false))} animationData={closeIcon} />
+                    {
+                        images.map((img, index) => {
+                           return <img key={index} className='w-96 h-96 mx-auto' src={img} alt="" />
+                        })
+                    }
+                </div>
+            </div>
+        )
     }
 
     if (!image || !title || !description || !price || !id || !reviews) {
@@ -51,7 +74,7 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
         return (
             <div className="card bg-base-100 shadow-lg rounded-2xl m-10">
                 <figure className="w-full mx-auto p-16">
-                    <img className='w-72 h-72' src={image[0]} alt={title} />
+                    <img className='w-72 h-72' src={image[0]} onClick={(() => showPhotos(image))} alt={title} />
                 </figure>
                 <div className="card-body p-4">
                     <h2 className="card-title text-xl font-bold mb-2">{title}</h2>

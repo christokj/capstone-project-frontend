@@ -24,7 +24,6 @@ function ShowCart() {
     const makePayment = async () => {
         try {
             const stripe = await loadStripe(import.meta.env.VITE_STRIPE_Publishable_key);
-            console.log("Payment started")
 
                 const response = await axiosInstance({
                     url: "/payment/create-checkout-session",
@@ -34,11 +33,7 @@ function ShowCart() {
                         "Content-Type": "application/json"
                     },
                 });
-           
-            console.log(response)
-
-            console.log("Res from backend")
-         
+                    
             if (response) {
            const sessionId = response?.data?.sessionId;
 
