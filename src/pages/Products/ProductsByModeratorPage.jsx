@@ -24,7 +24,7 @@ function ProductsByModeratorPage() {
             });
             setData(response.data.data);
             setSkelton(false)
-            setIsChecked(true);
+            setIsChecked(response.data.data.length > 0);
 
         } catch (error) {
             setSkelton(false)
@@ -55,7 +55,7 @@ function ProductsByModeratorPage() {
     useEffect(() => {
         fetchYourProducts();
     }, []);
-    
+
     if (skelton) {
 
         return (
@@ -66,7 +66,6 @@ function ProductsByModeratorPage() {
 
     } 
     if (!skelton) {
-
     return (
         <>
             {isChecked ? (
