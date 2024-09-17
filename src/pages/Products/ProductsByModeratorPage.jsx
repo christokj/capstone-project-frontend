@@ -4,16 +4,17 @@ import { axiosInstance } from '../../config/axiosInstance';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from '../../components/ui/Skeleton';
-import { MyContext } from '../../components/Context/Context';
+// import { MyContext } from '../../components/Context/Context';
 
 function ProductsByModeratorPage() {
 
     const [data, setData] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
+    const [skelton, setSkelton] = useState(true);
 
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-    const {value} = useContext(MyContext)
+    // const {value} = useContext(MyContext)
     const navigate = useNavigate();
     const fetchYourProducts = async () => {
         try {
@@ -21,12 +22,13 @@ function ProductsByModeratorPage() {
                 url: "/moderator/show-products",
                 method: "GET",
             });
-
             setData(response.data.data);
-            setIsChecked(response.data.data.length > 0);
+            setSkelton(false)
+            setIsChecked(true);
 
         } catch (error) {
-            toast.error("Failed fetching products");
+            setSkelton(false)
+            toast.error("Products empty");
         }
     };
     const handleUpdate = async (id) => {
@@ -53,8 +55,8 @@ function ProductsByModeratorPage() {
     useEffect(() => {
         fetchYourProducts();
     }, []);
-
-    if (!data.length) {
+    
+    if (skelton) {
 
         return (
             <div className="flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
@@ -62,7 +64,8 @@ function ProductsByModeratorPage() {
         </div>
             )
 
-    } else {
+    } 
+    if (!skelton) {
 
     return (
         <>

@@ -33,6 +33,8 @@ function ModeratorSignUpPage() {
         mobile: yup.string()
             .required("Mobile number is required")
             .matches(/^\d{10}$/, "Mobile number must be 10 digits"),
+        shopName: yup.string()
+            .required("Please enter your shop name")
     });
 
     const handleSignupSubmit = async (values) => {
@@ -74,6 +76,7 @@ function ModeratorSignUpPage() {
                     password: '',
                     confirmPassword: '',
                     mobile: '',
+                    shopName: '',
                 }}
             >
                 {({ handleSubmit, handleChange, values, errors }) => (
@@ -139,6 +142,19 @@ function ModeratorSignUpPage() {
                                 className={`input input-bordered bg-gray-50 border ${errors.mobile ? 'border-red-500' : 'border-gray-300'} text-gray-900 rounded-lg block w-full p-2 dark:placeholder-gray-400 dark:text-white`}
                             />
                             {errors.mobile && <span className="text-red-500 text-xs">{errors.mobile}</span>}
+                        </div>
+                        <div className="form-control mb-4">
+                            <label htmlFor="mobile" className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Shop name</label>
+                            <input
+                                type="text"
+                                name="shopName"
+                                id="shopName"
+                                value={values.shopName}
+                                onChange={handleChange}
+                                placeholder="Shop name"
+                                className={`input input-bordered bg-gray-50 border ${errors.shopName ? 'border-red-500' : 'border-gray-300'} text-gray-900 rounded-lg block w-full p-2 dark:placeholder-gray-400 dark:text-white`}
+                            />
+                            {errors.shopName && <span className="text-red-500 text-xs">{errors.shopName}</span>}
                         </div>
                         <div className="my-4">
                             <input
