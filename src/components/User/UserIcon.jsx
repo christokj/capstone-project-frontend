@@ -61,6 +61,7 @@ function UserIcon() {
                     </Link>
                 </li>
                     <li className='sm:hidden block'><a>Cart</a></li>
+                    <li><Link to={'/user/ordersPage'}><a>Orders</a></Link></li>
                     <li><a onClick={handleClick}>Logout</a></li>
                 </>
                 }

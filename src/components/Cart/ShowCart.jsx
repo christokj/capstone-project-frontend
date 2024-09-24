@@ -25,23 +25,22 @@ function ShowCart() {
         try {
             const stripe = await loadStripe(import.meta.env.VITE_STRIPE_Publishable_key);
 
-                const response = await axiosInstance({
-                    url: "/payment/create-checkout-session",
-                    method: "POST",
-                    data: { products: cartData },
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                });
-                    
-            if (response) {
-           const sessionId = response?.data?.sessionId;
+            const response = await axiosInstance({
+                url: "/payment/create-checkout-session",
+                method: "POST",
+                data: { products: cartData },
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
 
-               const result = await stripe.redirectToCheckout({
-                   sessionId: sessionId,
+            if (response) {
+                const sessionId = response?.data?.sessionId;
+
+                const result = await stripe.redirectToCheckout({
+                    sessionId: sessionId,
                 });
             }
-        
 
         } catch (error) {
             toast.error("Error");
@@ -62,10 +61,29 @@ function ShowCart() {
             toast.error("Failed to remove item from cart");
         }
     };
+
+    const updateCartQuantity = async (productId, quantity) => {
+        console.log(productId, quantity)
+        try {
+            const response = await axiosInstance({
+                url: '/user/update-cart-quantity',
+                method: "PUT",
+                data: {productId, quantity}
+            });
+            fetchCartItems();
+        } catch (error) {
+            console.log(error);
+            toast.error("Failed to remove item from cart");
+        }
+    }
     // console.log(cart)  
     useEffect(() => {
         fetchCartItems();
     }, []);
+
+    if (!cartData) {
+        return ''
+    }
 
     return (
         <>
@@ -78,20 +96,36 @@ function ShowCart() {
                         <div className="card-body">
                             <h4 className="truncate"></h4>
                             {item.productDetails.title}
-                            <span className="text-lg font-bold"> ₹{(item.productDetails.price * 83).toFixed(0)}</span>
+                            <div className="flex space-x-2 mt-2">
+                            <h1 className='text-sm font-bold'>Qty: {item.productDetails.quantity} </h1>
+                                <button
+                                    className="btn btn-xs btn-outline"
+                                    onClick={() => updateCartQuantity(item.productId, item.productDetails.quantity - 1)}
+                                    disabled={item.productDetails.quantity <= 1} // Disable when quantity is 1
+                                >
+                                    -
+                                </button>
+                                <span className="text-md">{item.productDetails.quantity}</span>
+                                <button
+                                    className="btn btn-xs btn-outline"
+                                    onClick={() => updateCartQuantity(item.productId, item.productDetails.quantity + 1)}
+                                >
+                                    +
+                                </button>
+                            </div>
+                            <span className="text-lg font-bold"> ₹{(item.productDetails.price * 83 * item.productDetails.quantity).toFixed(0)}</span>
                             <button onClick={() => removeCart(item.productId)} className='btn bg-gray-200 '>Remove</button>
                         </div>
                     </div>
                 ))}
             </div>
             <div className="md:w-64 p-5 flex md:mx-auto mx-4">
-                {cart.map((item) => {
-                    return (
-                        <div key={item._id}>
-                            <h1 className='text-lg font-bold'>Total price ₹{(item.totalPrice * 83).toFixed(0)} </h1>
-                        </div>
-                    )
-                })
+                {cart.map((item) => (
+                    <div key={item._id}>
+                        <h1 className='text-lg font-bold'>Total price ₹{(item.totalPrice).toFixed(0)} </h1>
+                    </div>
+                )
+                )
                 }
                 <button onClick={makePayment} className='bg-main text-black px-3 rounded-md'>
                     Checkout

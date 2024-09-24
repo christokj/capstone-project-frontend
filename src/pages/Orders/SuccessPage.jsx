@@ -8,29 +8,42 @@ function SuccessPage() {
   const query = new URLSearchParams(location.search);
 
   const sessionId = query.get('session_id');
-  const productName = query.get('product');
-  const productPrice = query.get('price');
-
+  const productsData = query.get('productsData');
+ 
+  console.log(productsData)
+ 
   // console.log(sessionId, productName, productPrice)
   
   useEffect(() => {
 
-    if (sessionId && productName && productPrice) {
+    if (productsData) {
 
-    axiosInstance({
-        url: "/payment/emailHandler",
+      axiosInstance({
+        url: "/user/save-orders",
         method: "POST",
-        data: {sessionId, productName, productPrice}
-      })
-      .then((response) => {
-        console.log('Email handler response:', response);
+        data: {productsData}
       })
       .catch((error) => {
-        console.error('Error sending email handler request:', error);
+        console.error('Error', error);
       });
-
     }
-  }, [sessionId, productName, productPrice]);
+
+    // if (sessionId && productName && productPrice) {
+
+    // axiosInstance({
+    //     url: "/payment/emailHandler",
+    //     method: "POST",
+    //     data: {sessionId, productName, productPrice}
+    //   })
+    //   .then((response) => {
+    //     console.log('Email handler response:', response);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error sending email handler request:', error);
+    //   });
+
+    // }
+  }, [sessionId, productsData]);
 
 
   return (
@@ -56,8 +69,7 @@ function SuccessPage() {
         <p className="text-gray-600 mb-6">
           Thank you for your payment! Your transaction has been completed successfully.
         </p>
-        <Link to={"/"} className="btn bg-main w-full">Go to Dashboard</Link>
-        <button className="btn btn-outline w-full mt-2">View Receipt</button>
+        <Link to={"/user"} className="btn bg-main w-full">Go to Dashboard</Link>
       </div>
     </div>
   );

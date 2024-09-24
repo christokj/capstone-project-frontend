@@ -25,13 +25,13 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
 
         try {
             await axiosInstance({
-                url: "/user/addReview",
+                url: "/user/add-review",
                 method: "POST",
                 data: { review, id }
             });
 
             const values = await axiosInstance({
-                url: `/user/showReview/${id}`,
+                url: `/user/show-review/${id}`,
                 method: "GET"
             })
             setReviewList(values.data.data)
