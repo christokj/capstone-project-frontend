@@ -22,7 +22,7 @@ export const Header = () => {
                     <img className="object-cover h-14 w-14 mx-4 cursor-pointer" src="https://res.cloudinary.com/dfm6raue1/image/upload/fl_preserve_transparency/v1724577774/Services_ECommerce_v2-01_xjoraa.jpg?_s=public-apps" alt="" />
                     <h3 className="text-2xl font-bold text-dark-grey-900 hidden sm:block">TrendiQ</h3>
                 </NavLink>
-                <div className="items-center hidden md:block ms-12">
+                <div className="items-center hidden lg:block ms-12">
                     <NavLink className="text-lg hover:shadow-lg hover:bg-gray-100 hover:rounded-full duration-150 py-2 px-4 hover:py-2 hover:px-4 font-semibold text-dark-grey-900 hover:text-dark-grey-900" to={"/"}>Home</NavLink>
                     <NavLink className="text-lg hover:shadow-lg hover:bg-gray-100 hover:rounded-full duration-150 py-2 px-4 hover:py-2 hover:px-4 font-semibold text-dark-grey-900 hover:text-dark-grey-900" to={"/products"}>Products</NavLink>
                     <NavLink className="text-lg hover:shadow-lg hover:bg-gray-100 hover:rounded-full duration-150 py-2 px-4 hover:py-2 hover:px-4 font-semibold text-dark-grey-900 hover:text-dark-grey-900" to={"/about"}>About</NavLink>
@@ -36,10 +36,10 @@ export const Header = () => {
                         Become a Seller
                     </NavLink>
                     <DarkMode />
-                    <NavLink to={"/login"} type="button" className="hidden sm:block text-nowrap mt-2 text-dark-grey-900  bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                    <NavLink to={"/login"} type="button" className="hidden md:block text-nowrap mt-2 text-dark-grey-900  bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                         Login
                     </NavLink>
-                     <div className="navbar-start me-5 sm:hidden block ">
+                     <div className="navbar-start me-20 md:hidden block ">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                 <svg
@@ -58,11 +58,11 @@ export const Header = () => {
                             <ul
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-24 p-2 shadow">
-                                <li><NavLink to={'/'}><a>Home</a></NavLink></li>
-                                <li><NavLink to={'/products'}><a>Products</a></NavLink></li>
-                                <li><NavLink to={'/about'}><a>About</a></NavLink></li>
-                                <li><NavLink to={'/contact'}><a>Contact</a></NavLink></li>
-                                <li><NavLink to={'/login'}><a>Login</a></NavLink></li>
+                                <li><NavLink to={'/'}>Home</NavLink></li>
+                                <li><NavLink to={'/products'}>Products</NavLink></li>
+                                <li><NavLink to={'/about'}>About</NavLink></li>
+                                <li><NavLink to={'/contact'}>Contact</NavLink></li>
+                                <li><NavLink to={'/login'}>Login</NavLink></li>
                             </ul>
                         </div>
                     </div>

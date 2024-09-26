@@ -20,7 +20,6 @@ function ShowCart() {
         }
     };
 
-
     const makePayment = async () => {
         try {
             const stripe = await loadStripe(import.meta.env.VITE_STRIPE_Publishable_key);
@@ -76,13 +75,15 @@ function ShowCart() {
             toast.error("Failed to remove item from cart");
         }
     }
-    // console.log(cart)  
+    
     useEffect(() => {
         fetchCartItems();
     }, []);
 
     if (!cartData) {
-        return ''
+        return (
+            <div>No items in cart</div>
+        )
     }
 
     return (
@@ -101,7 +102,7 @@ function ShowCart() {
                                 <button
                                     className="btn btn-xs btn-outline"
                                     onClick={() => updateCartQuantity(item.productId, item.productDetails.quantity - 1)}
-                                    disabled={item.productDetails.quantity <= 1} // Disable when quantity is 1
+                                    disabled={item.productDetails.quantity <= 1} 
                                 >
                                     -
                                 </button>

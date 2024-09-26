@@ -10,7 +10,7 @@ function HomePage() {
 
     return (
         <>
-            <div className='md:p-16 p-5 grid  w-full grid-cols-1 my-auto mt-3 mb-8 md:grid-cols-2 xl:gap-10 md:gap-5'>
+            <div className='md:p-16 p-5 grid  w-full grid-cols-1 my-auto mt-24 mb-8 md:grid-cols-2 xl:gap-10 md:gap-5'>
                 <div className='flex flex-col justify-center col-span-1 text-center md:text-start'>
                     <div className="w-max mx-auto">
                         <h1 className="mb-8 font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-500 text-dark-grey-900 animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black">

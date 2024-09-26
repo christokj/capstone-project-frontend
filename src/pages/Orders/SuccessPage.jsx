@@ -9,11 +9,7 @@ function SuccessPage() {
 
   const sessionId = query.get('session_id');
   const productsData = query.get('productsData');
- 
-  console.log(productsData)
- 
-  // console.log(sessionId, productName, productPrice)
-  
+   
   useEffect(() => {
 
     if (productsData) {

@@ -30,7 +30,7 @@ function OurFeatures() {
                 </div>
             </div>
             <div className='w-full md:w-1/3 lg:w-[30%]'>
-                <div className="mt-16 shadow-md bg-gray-100 rounded-lg p-10">
+                <div className="md:mt-16 shadow-md bg-gray-100 rounded-lg p-10">
                     <div className='flex gap-3'>
                         <SiFsecure className='text-main text-3xl' /> <h3 className="text-xl font-semibold text-gray-900">Super Secure Payment System</h3>
                     </div>

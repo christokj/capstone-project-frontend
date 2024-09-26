@@ -66,7 +66,7 @@ console.log(id, review)
                   <td>
                     <div className="flex items-center justify-between">
                       <div className="flex gap-2 ">
-                        <div className="mask mask-squircle w-12 h-12">
+                        <div className=" w-20 md:w-16 ">
                           <img src={order.productId.image[0]} alt={order.productName} />
                         </div>
                         <div className="font-bold">{order.productId.title} ({order.quantity})</div>
@@ -101,7 +101,6 @@ console.log(id, review)
           </table>
         </div>
       </div>
-      );
     </>
   )
 }
