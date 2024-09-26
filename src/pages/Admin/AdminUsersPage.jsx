@@ -48,7 +48,6 @@ function AdminUsersPage() {
                     <table className="table w-full">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -61,7 +60,6 @@ function AdminUsersPage() {
                             {users.length > 0 ? (
                                 users.map(user => (
                                     <tr key={user._id} className='text-dark-grey-500'>
-                                        <td >{user._id}</td>
                                         <td>{user.fullname}</td>
                                         <td>{user.email}</td>
                                         <td>{user.mobile}</td>

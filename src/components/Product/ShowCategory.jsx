@@ -62,7 +62,7 @@ function ShowCategory() {
 
         return (
             <>
-                    <div className='flex justify-center items-center '>
+                    <div className='flex justify-center items-center mt-28'>
                         <div className="card bg-base-100 px-10 shadow-xl grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 cursor-pointer">
                             {Array.from({ length: 4 }).map((_, index) => (
                                 <div className='p-10' key={index}>
@@ -79,8 +79,8 @@ function ShowCategory() {
         return (
             <>
               
-                <div className="flex justify-center items-center ">
-                    <div className="card bg-base-100 px-10 shadow-xl grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 cursor-pointer">
+                <div className="flex justify-center items-center mt-28 ">
+                    <div className="card bg-base-100 px-10 shadow-xl py-10 grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 cursor-pointer">
                         { 
                         data.map((item) => (
                             <div key={item._id}>

@@ -59,7 +59,7 @@ function ProductsByModeratorPage() {
     if (skelton) {
 
         return (
-            <div className="flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
+            <div className=" mt-28 flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
           <Skeleton/>
         </div>
             )
@@ -69,7 +69,7 @@ function ProductsByModeratorPage() {
     return (
         <>
             {isChecked ? (
-                <div className=' card bg-base-100 shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
+                <div className='mt-28 card bg-base-100 shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
                     {data.map((item) => (
                         <div key={item._id} className="md:w-64 md:mx-auto mx-4">
                             <figure>

@@ -4,7 +4,7 @@ import ShowCart from '../../components/Cart/ShowCart';
 function CartPage() {
 
   return (
-    <div>
+    <div className='mt-28'>
       <ShowCart />
     </div>
   );

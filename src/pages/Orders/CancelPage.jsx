@@ -22,7 +22,7 @@ function CancelPage() {
           </svg>
         </div>
         <h1 className="text-3xl font-bold mt-6 mb-4">Payment Failed</h1>
-        <Link to={"/"} className="btn bg-main">Go to Dashboard</Link>
+        <Link to={"/user"} className="btn bg-main">Go to Dashboard</Link>
         <p className="text-gray-600 mb-6">
           Unfortunately, your payment was not successful. Please try again.
         </p>

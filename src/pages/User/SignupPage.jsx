@@ -143,7 +143,7 @@ function SignupPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center px-1 sm:px-10 my-10 mx-auto w-full bg-gray-100 rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-col items-center justify-center px-1 mt-28 sm:px-10 my-10 mx-auto w-full bg-gray-100 rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700">
             <div className="">
                 <h1 className="my-4 font-bold text-center leading-tight tracking-tight text-gray-900 text-2xl dark:text-white">
                     Create an account

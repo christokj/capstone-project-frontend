@@ -4,7 +4,7 @@ function AboutPage() {
     return (
 
         <>
-            <div className="px-4 sm:px-12 md:px-24 lg:px-48 xl:px-64 py-16 ">
+            <div className="px-4 sm:px-12 md:px-24 lg:px-48 xl:px-64 py-16 mt-10 ">
                 <div className="text-center mb-12">
                     <h1 className="md:font-extrabold font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-500 lg:text-6xl text-dark-grey-900 animate-typing overflow-hidden whitespace-nowrap text-5xl text-black mx-auto">About Us</h1>
                     <p className="mt-4 text-lg sm:text-xl text-gray-600">

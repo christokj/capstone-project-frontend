@@ -63,7 +63,7 @@ function ModeratorSignUpPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center px-4 my-10 mx-auto w-full bg-gray-100 rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-col items-center mt-28 justify-center px-4 my-10 mx-auto w-full bg-gray-100 rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700">
             <h1 className="my-4 font-bold text-center leading-tight tracking-tight text-gray-900 text-2xl dark:text-white">
                 Moderator Signup
             </h1>
@@ -88,6 +88,7 @@ function ModeratorSignUpPage() {
                                 name="fullname"
                                 value={values.fullname}
                                 onChange={handleChange}
+                                placeholder='Enter your fullname'
                                 className={`input input-bordered bg-gray-50 border ${errors.fullname ? 'border-red-500' : 'border-gray-300'} text-gray-900 rounded-lg block w-full p-2 dark:placeholder-gray-400 dark:text-white`}
                             />
                             {errors.fullname && <span className="text-red-500 text-xs">{errors.fullname}</span>}

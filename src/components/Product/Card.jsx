@@ -1,45 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { axiosInstance } from '../../config/axiosInstance';
-import { useSelector } from 'react-redux';
 import closeIcon from '../../assets/close.json'
 import Lottie from 'lottie-react';
 
 const Card = ({ id, image, title, description, price, reviews, onButtonClick }) => {
 
-    const [review, setReview] = useState('')
     const [reviewList, setReviewList] = useState([]);
 
     const [showImages, setShowImages] = useState(false);
-    const  [images, setImages] = useState([]);
-
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
-    if (reviews && !review && !reviewList.length) {
-        setReviewList(reviews);
-    }
-}, [reviews]);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            await axiosInstance({
-                url: "/user/add-review",
-                method: "POST",
-                data: { review, id }
-            });
-
-            const values = await axiosInstance({
-                url: `/user/show-review/${id}`,
-                method: "GET"
-            })
-            setReviewList(values.data.data)
-            setReview('');
-        } catch (error) {
-            console.error("Error submitting review:", error);
+        if (reviews) {
+            setReviewList(reviews);
         }
-    }
+    }, [reviews]);
+
     const showPhotos = (images) => {
 
         setShowImages(true)
@@ -50,10 +25,10 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
         return (
             <div className='w-full'>
                 <div>
-                <Lottie className='w-10 cursor-pointer fixed' onClick={(() => setShowImages(false))} animationData={closeIcon} />
+                    <Lottie className='w-10 cursor-pointer fixed' onClick={(() => setShowImages(false))} animationData={closeIcon} />
                     {
                         images.map((img, index) => {
-                           return <img key={index} className='w-96 h-96 mx-auto' src={img} alt="" />
+                            return <img key={index} className='w-96 h-96 mx-auto' src={img} alt="" />
                         })
                     }
                 </div>
@@ -72,7 +47,7 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
         )
     } else {
         return (
-            <div className="card bg-base-100 shadow-lg rounded-2xl m-10">
+            <div className="card bg-base-100 shadow-lg rounded-2xl mt-24 m-10">
                 <figure className="w-full mx-auto p-16">
                     <img className='w-72 h-72' src={image[0]} onClick={(() => showPhotos(image))} alt={title} />
                 </figure>
@@ -101,18 +76,7 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
                         ) : (
                             <p>No reviews yet.</p>
                         )}
-                        {isAuthenticated && <form className="mt-4 space-y-4" onSubmit={handleSubmit}>
-                            <textarea
-                                className="textarea textarea-bordered w-full"
-                                placeholder="Write a review"
-                                value={review}
-                                onChange={(e) => setReview(e.target.value)}
-                            ></textarea>
-                            <button className="btn bg-main text-white" type="submit">
-                                Submit Review
-                            </button>
-                        </form>
-                        }
+
                     </div>
                 </div>
             </div>

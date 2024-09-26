@@ -8,7 +8,7 @@ function ContactPage() {
 
     const { value, setValue } = useContext(MyContext);
     return (
-        <div className={`md:flex mb-10 ${!value && "bg-gray-50"}`}>
+        <div className={`md:flex mt-24 mb-10 ${!value && "bg-gray-50"}`}>
             <div className='w-full mx-auto '>
                 <ContactForm />
             </div>

@@ -38,14 +38,13 @@ function AdminProductsPage() {
     }
 
     return (
-        <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6`}>
+        <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6 `}>
             <div className={`max-w-6xl mx-auto ${value ? "bg-gray-900" : "bg-gray-100"} shadow-md rounded-lg p-6`}>
                 <h1 className="text-3xl font-bold mb-6">Manage Products</h1>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Price</th>
@@ -56,7 +55,6 @@ function AdminProductsPage() {
                             {products.length > 0 ? (
                                 products.map(product => (
                                     <tr key={product._id}>
-                                        <td>{product.id}</td>
                                         <td>
                                             <img
                                                 src={product.image[0]}
@@ -70,7 +68,7 @@ function AdminProductsPage() {
                                         <td>
                                             <button
                                                 className="btn-sm text-black bg-red-400 gap-2 btn"
-                                                onClick={() => handleDelete(product._id)}
+                                                onClick={() => handleDelete(product._id)} type="button"
                                             >
                                                 Delete
                                             </button>

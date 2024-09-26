@@ -14,16 +14,18 @@ function AdminHomePage() {
     const response = await axiosInstance.get('/admin/database-details');
     setData(response.data)
   }
-
+console.log()
   useEffect(() => {
+    if (data.length === 0 ) {
 
-    fetchDetails();
-  }, [data]);
+  fetchDetails();
+}
+}, [data]);
 
 
   return (
     <div className={`min-h-screen  ${value ? "bg-black" : "bg-gray-100"} flex`}>
-      <div className={`w-64 shadow-md h-screen ${value ? "bg-gray-900" : "bg-gray-100"}`}>
+      <div className={`w-64 hidden sm:block shadow-md h-screen ${value ? "bg-gray-900" : "bg-gray-100"}`}>
         <div className="p-6">
           <h2 className="text-2xl font-semibold text-dark-grey-500">Admin Dashboard</h2>
         </div>
@@ -53,6 +55,33 @@ function AdminHomePage() {
           </ul>
         </nav>
       </div>
+
+      <div className="navbar-start -me-20 m-2 sm:hidden block ">
+                        <div className="dropdown">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M4 6h16M4 12h16M4 18h7" />
+                                </svg>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-44 gap-3 py-5 p-2 shadow">
+                                <li><Link to={'/admin/users'}><a>Manage Users</a></Link></li>
+                                <li><Link to={'/admin/moderators'}><a>Manage Moderaters</a></Link></li>
+                                <li><Link to={'/admin/products'}><a>Manage Products</a></Link></li>
+                                <li><Link to={'/admin/category'}><a>Manage Category</a></Link></li>
+                            </ul>
+                        </div>
+                    </div>
 
       <div className="flex-1 p-6">
         <h1 className="text-3xl font-bold mb-6">Welcome to Admin Dashboard</h1>

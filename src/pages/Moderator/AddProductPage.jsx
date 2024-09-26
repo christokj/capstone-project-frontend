@@ -33,7 +33,7 @@ const AddProductPage = () => {
         setPrice(data.product.price);
       })
       .catch(error => {
-        toast.error('Failed to fetch product details');
+        toast.error('Failed to fetch product details'+ error);
       });
   }, [id]);
 
@@ -67,7 +67,7 @@ const AddProductPage = () => {
   }
 
   return (
-    <form onSubmit={saveProduct} className={`space-y-6 max-w-lg mx-auto p-6 mb-20 ${value ? "bg-gray-900" : "bg-gray-50"} bg-gray-50 rounded-lg shadow-md`}>
+    <form onSubmit={saveProduct} className={`mt-28 space-y-6 max-w-lg mx-auto p-6 mb-20 ${value ? "bg-gray-900" : "bg-gray-50"} bg-gray-50 rounded-lg shadow-md`}>
       <div className="form-control">
         <label htmlFor="title" className="label">
           <span className="label-text">Title</span>

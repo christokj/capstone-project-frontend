@@ -57,7 +57,7 @@ function ModeratorProfileEditPage() {
     }, []);
 
     return (
-        <div className="flex justify-center items-center my-5 ">
+        <div className="flex justify-center items-center my-5 mt-28">
             <div className="card w-full max-w-lg bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Edit Profile</h2>

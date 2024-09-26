@@ -76,7 +76,7 @@ function AddCategoryPage() {
   }
 
   return (
-    <form onSubmit={saveProduct} className={`space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 ${value ? "bg-gray-900" : "bg-gray-50"} rounded-lg shadow-md`}>
+    <form onSubmit={saveProduct} className={`mt-28 space-y-6 max-w-lg mx-auto p-6 mb-20 bg-gray-50 ${value ? "bg-gray-900" : "bg-gray-50"} rounded-lg shadow-md`}>
 
       <div className="form-control">
         <label htmlFor="category" className="label">

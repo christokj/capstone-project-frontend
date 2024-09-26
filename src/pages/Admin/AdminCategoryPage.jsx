@@ -7,7 +7,7 @@ import { MyContext } from '../../components/Context/Context';
 function AdminCategoryPage() {
     const [categories, setCategories] = useState([]);
 
-  const {value} = useContext(MyContext)
+    const { value } = useContext(MyContext)
 
     const navigate = useNavigate();
     // Fetch categories from the server when the component mounts
@@ -45,11 +45,10 @@ function AdminCategoryPage() {
         <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6`}>
             <div className={`max-w-6xl mx-auto ${value ? "bg-gray-900" : "bg-gray-100"} shadow-md rounded-lg p-6`}>
                 <h1 className="text-3xl font-bold mb-6 ">Manage Categories <button onClick={handleCategory} className='btn btn-sm text-black bg-main mx-10'>Add Categories</button></h1>
-                <div className="overflow-x-auto">
-                    <table className="table w-full">
+                <div className="overflow-x-auto ">
+                    <table className="table w-full ">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Image</th>
                                 <th>Actions</th>
@@ -59,7 +58,6 @@ function AdminCategoryPage() {
                             {categories.length > 0 ? (
                                 categories.map(category => (
                                     <tr key={category._id}>
-                                        <td>{category._id}</td>
                                         <td>{category.name}</td>
                                         <td>
                                             <img

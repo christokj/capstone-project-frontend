@@ -53,7 +53,6 @@ function AdminModeratorsPage() {
                     <table className="table w-full">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
@@ -66,7 +65,6 @@ function AdminModeratorsPage() {
                             {moderators.length > 0 ? (
                                 moderators.map(moderator => (
                                     <tr key={moderator._id}>
-                                        <td>{moderator._id}</td>
                                         <td>{moderator.fullname}</td>
                                         <td>{moderator.email}</td>
                                         <td>{moderator.mobile}</td>

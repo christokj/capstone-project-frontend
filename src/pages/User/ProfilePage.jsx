@@ -60,7 +60,7 @@ function ProfilePage() {
 
 
   return (
-    <div className={`min-h-screen ${value && "bg-black"}bg-gray-50 flex items-center justify-center`}>
+    <div className={`min-h-screen mt-10 ${value && "bg-black"}bg-gray-50 flex items-center justify-center`}>
       <div className={`w-full max-w-3xl my-10 ${value ? "bg-black" : "bg-white"}  shadow-lg rounded-3xl overflow-hidden`}>
         <div className="p-8">
           <div className="flex items-center">

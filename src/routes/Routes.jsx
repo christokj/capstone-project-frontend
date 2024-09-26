@@ -35,11 +35,16 @@ import AdminModeratorsPage from "../pages/Admin/AdminModeratersPage";
 import AdminProductsPage from "../pages/Admin/AdminProductsPage";
 import AdminCategoryPage from "../pages/Admin/AdminCategoryPage";
 import OrdersPage from "../pages/User/OrdersPage";
+import ScrollToTop from "../components/ui/ScrollToTop";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <RootLayout />,
+        element: (
+            <ScrollToTop>
+                <RootLayout />
+            </ScrollToTop>
+        ),
         errorElement: <ErrorPage />,
         children: [
             {
@@ -88,7 +93,9 @@ export const router = createBrowserRouter([
         path: "user",
         element: (
             <UserAuth>
-                <UserLayout />
+                <ScrollToTop>
+                    <UserLayout />
+                </ScrollToTop>
             </UserAuth>
         ),
         children: [
@@ -138,7 +145,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "ordersPage",
-                element: <OrdersPage/>
+                element: <OrdersPage />
             }
         ],
     },
@@ -146,7 +153,9 @@ export const router = createBrowserRouter([
         path: "moderator",
         element: (
             <ModeratorAuth>
-                <ModeratorLayout />
+                <ScrollToTop>
+                    <ModeratorLayout />
+                </ScrollToTop>
             </ModeratorAuth>
         ),
         children: [
@@ -184,7 +193,9 @@ export const router = createBrowserRouter([
         path: "admin",
         element: (
             <AdminAuth >
-                <AdminLayout />
+                <ScrollToTop>
+                    <AdminLayout />
+                </ScrollToTop>
             </AdminAuth>
         ),
         children: [

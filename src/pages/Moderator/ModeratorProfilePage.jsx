@@ -28,7 +28,7 @@ function ModeratorProfilePage() {
 
     return (
 
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center mt-24">
             <div className="w-full max-w-3xl my-10 bg-white shadow-lg rounded-3xl overflow-hidden">
                 <div className="p-8">
                     <div className="flex items-center">

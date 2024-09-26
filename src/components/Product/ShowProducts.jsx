@@ -93,20 +93,20 @@ function ShowProducts() {
     if (!data.length && searchValue) {
         if (!isChecked) {
             return (
-                <div className=" flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
+                <div className="mt-24 flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
                          <Skeleton/>
             </div>
                 );
           }
 
-        return <div>Please try these words : Mens, Backpack, Silver, Gold etc...</div>;
+        return <div className='mt-28'>Please try these words : Mens, t-shirts, slim fit, sandisk, Backpack, Silver, Gold etc...</div>;
 
     }
 
     if (!data.length) {
 
         return (
-            <div className=" flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
+            <div className="mt-28 flex-wrap justify-center gap-4 grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2">
           <Skeleton/>
         </div>
             )
@@ -114,7 +114,7 @@ function ShowProducts() {
     } else {
 
     return (
-        <div className='card shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-10'>
+        <div className='card shadow-xl grid md:grid-cols-4 2xl:grid-cols-6 grid-cols-2 cursor-pointer mt-32'>
             {data.map((item) => (
                 <ProductCard
                     key={item._id}
