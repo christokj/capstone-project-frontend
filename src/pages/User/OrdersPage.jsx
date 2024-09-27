@@ -11,7 +11,7 @@ function OrdersPage() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const handleSubmit = async (id) => {
-console.log(id, review)
+    console.log(id, review)
     try {
       await axiosInstance({
         url: "/user/add-review",
@@ -19,11 +19,15 @@ console.log(id, review)
         data: { review, id }
       });
 
-      setReview('');
       toast.success("Review added")
     } catch (error) {
-      toast.error('Error')
-      console.error("Error submitting review:", error);
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error);
+      } else if (error.response && error.response.data) {
+        toast.error(error.response.data.message || 'Error submitting review');
+      } else {
+        toast.error('An unexpected error occurred.');
+      }
     }
   }
 
