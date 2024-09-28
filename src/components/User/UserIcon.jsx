@@ -51,16 +51,16 @@ function UserIcon() {
             <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li className='md:hidden block'><Link to={isAuthenticated ? '/user' : '/'}>Home</Link></li>
-                <li className='md:hidden block'><Link to={isAuthenticated ? '/user/products' : '/products'}>Products</Link></li>
-                <li className='md:hidden block'><Link to={isAuthenticated ? '/user/about' : '/about'}>About</Link></li>
-                <li className='md:hidden block'><Link to={isAuthenticated ? '/user/contact' : '/contact'}>Contact</Link></li>
+                <li className='lg:hidden block'><Link to={isAuthenticated ? '/user' : '/'}>Home</Link></li>
+                <li className='lg:hidden block'><Link to={isAuthenticated ? '/user/products' : '/products'}>Products</Link></li>
+                <li className='lg:hidden block'><Link to={isAuthenticated ? '/user/about' : '/about'}>About</Link></li>
+                <li className='lg:hidden block'><Link to={isAuthenticated ? '/user/contact' : '/contact'}>Contact</Link></li>
                 {isAuthenticated && <> <li>
                     <Link to={'/user/profile'} className="justify-between">
                         Profile
                     </Link>
                 </li>
-                    <li className='sm:hidden block'><a>Cart</a></li>
+                    <li className='sm:hidden block'><Link to={'/user/cart'}><a>Cart</a></Link></li>
                     <li><Link to={'/user/ordersPage'}><a>Orders</a></Link></li>
                     <li><a onClick={handleClick}>Logout</a></li>
                 </>

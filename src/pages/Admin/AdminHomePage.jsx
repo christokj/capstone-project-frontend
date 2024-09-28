@@ -24,13 +24,13 @@ console.log()
 
 
   return (
-    <div className={`min-h-screen  ${value ? "bg-black" : "bg-gray-100"} flex`}>
+    <div className={`min-h-screen mt-24 ${value ? "bg-black" : "bg-gray-100"} flex`}>
       <div className={`w-64 hidden sm:block shadow-md h-screen ${value ? "bg-gray-900" : "bg-gray-100"}`}>
         <div className="p-6">
           <h2 className="text-2xl font-semibold text-dark-grey-500">Admin Dashboard</h2>
         </div>
         <nav className="p-6">
-          <ul className="space-y-4">
+          <ul className="space-y-4 font-bold text-lg">
 
             <li>
               <Link to="/admin/users" className="block py-2 px-4 rounded hover:bg-gray-200">

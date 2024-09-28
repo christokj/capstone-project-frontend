@@ -15,7 +15,7 @@ const ModeratorHomePage = () => {
         });
     };
     return (
-        <section className={`min-h-screen ${value ? "bg-black" : "bg-gray-50"} flex flex-col items-center justify-center`}>
+        <section className={`min-h-screen mt-10 ${value ? "bg-black" : "bg-gray-50"} flex flex-col items-center justify-center`}>
             <div className={`w-full max-w-4xl rounded-lg shadow-lg p-8 ${value ? "bg-gray-900" : "bg-white"}`}>
                 <h1 className="text-3xl font-bold  mb-4">
                     Welcome, Moderator

@@ -41,7 +41,7 @@ function AdminUsersPage() {
     }
 
     return (
-        <div className={`min-h-screen ${value ? "bg-black" : "bg-gray-100"} p-6`}>
+        <div className={`min-h-screen mt-24 ${value ? "bg-black" : "bg-gray-100"} p-6`}>
             <div className={`max-w-6xl mx-auto ${value ? "bg-gray-900" : "bg-gray-100"} shadow-md rounded-lg p-6`}>
                 <h1 className="text-3xl font-bold mb-6">Manage Users</h1>
                 <div className="overflow-x-auto">
@@ -50,7 +50,7 @@ function AdminUsersPage() {
                             <tr>
                                 <th>Full Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
+                                <th>Mobile</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>

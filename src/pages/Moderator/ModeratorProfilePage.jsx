@@ -23,7 +23,7 @@ function ModeratorProfilePage() {
     }, []);
 
     if (!moderatorData) {
-        return <div>Loading...</div>;
+        return <div className='mt-28'>Loading...</div>;
     }
 
     return (
