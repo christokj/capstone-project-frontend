@@ -38,7 +38,7 @@ function AdminCategoryPage() {
     };
 
     if (!categories) {
-        return <div>Loading</div>;
+        return <div className='mt-24'>Loading</div>;
     }
 
     return (

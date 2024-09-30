@@ -23,9 +23,9 @@ const Card = ({ id, image, title, description, price, reviews, onButtonClick }) 
 
     if (showImages) {
         return (
-            <div className='w-full'>
+            <div className='w-full mt-24'>
                 <div>
-                    <Lottie className='w-10 cursor-pointer fixed' onClick={(() => setShowImages(false))} animationData={closeIcon} />
+                    <Lottie className='w-10 cursor-pointer fixed ' onClick={(() => setShowImages(false))} animationData={closeIcon} />
                     {
                         images.map((img, index) => {
                             return <img key={index} className='w-96 h-96 mx-auto' src={img} alt="" />

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { MyContext } from '../../components/Context/Context';
 
 function ModeratorProfilePage() {
 
     const [moderatorData, setModeratorData] = useState(null);
+
+    const {value} = useContext(MyContext)
 
     const fetchData = async () => {
         try {
@@ -28,8 +31,8 @@ function ModeratorProfilePage() {
 
     return (
 
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center mt-24">
-            <div className="w-full max-w-3xl my-10 bg-white shadow-lg rounded-3xl overflow-hidden">
+        <div className={`min-h-screen flex items-center justify-center mt-24 ${value ? "bg-black" : "bg-gray-50"}`}>
+            <div className={`w-full max-w-3xl my-10 shadow-lg rounded-3xl overflow-hidden ${value ? "bg-gray-300" : "bg-gray-50"}`}>
                 <div className="p-8">
                     <div className="flex items-center">
                         <div className="ml-4">
@@ -64,7 +67,7 @@ function ModeratorProfilePage() {
                     <div className="mt-6">
                         <h3 className="text-lg font-semibold text-gray-800">Settings</h3>
                         <div className="mt-4 space-y-4">
-                            <Link to={'/moderator/update-profile'} className="btn bg-main w-full">
+                            <Link to={'/moderator/update-profile'} className="btn bg-main text-black w-full">
                                 Edit Profile
                             </Link>
                         </div>

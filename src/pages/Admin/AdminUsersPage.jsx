@@ -37,7 +37,7 @@ function AdminUsersPage() {
     }
 
     if (!users) {
-        return <div>Loading</div>
+        return <div className='mt-24'>Loading</div>
     }
 
     return (

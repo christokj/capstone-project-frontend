@@ -42,7 +42,7 @@ function AdminModeratorsPage() {
     };
 
     if (!moderators.length) {
-        return <div>Loading...</div>;
+        return <div className='mt-24'>Loading...</div>;
     }
 
     return (

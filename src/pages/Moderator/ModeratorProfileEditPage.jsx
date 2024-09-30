@@ -133,7 +133,7 @@ function ModeratorProfileEditPage() {
                         </div>
 
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-main">
+                            <button type="submit" className="btn bg-main text-black">
                                 Save Changes
                             </button>
                         </div>

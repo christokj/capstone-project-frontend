@@ -96,7 +96,7 @@ function AddCategoryPage() {
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
       </div>
       <button type="submit" className="btn text-black bg-main w-full">
-        Save Product
+        Save Category
       </button>
     </form>
   );
