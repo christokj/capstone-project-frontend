@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as formik from 'formik';
 import * as yup from 'yup';
@@ -6,10 +6,13 @@ import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
 import { loginSuccess } from '../../redux/features/authSlice';
 import { useDispatch } from 'react-redux';
+import { MyContext } from '../../components/Context/Context';
 
 function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const { Formik } = formik;
+
+    const { value } = useContext(MyContext);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -78,7 +81,7 @@ function LoginPage() {
     return (
         <section className="dark:bg-gray-900 mt-24">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className={`w-full ${value ? 'bg-gray-600' : 'bg-gray-100 '} rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700`}>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Login to your account
@@ -156,7 +159,7 @@ function LoginPage() {
                                                 />
                                             </div>
                                             <div className="ml-3 text-sm">
-                                                <label htmlFor="showPassword" className="text-gray-500 dark:text-gray-300">
+                                                <label htmlFor="showPassword" className="text-dark-grey-500 dark:text-gray-300">
                                                     Show Password
                                                 </label>
                                             </div>
@@ -171,7 +174,7 @@ function LoginPage() {
                                     >
                                         Login
                                     </button>
-                                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    <p className="text-sm font-light text-dark-grey-500 dark:text-gray-400">
                                         Don’t have an account yet?{' '}
                                         <Link to="/signup" className="font-medium text-black hover:underline dark:text-primary-500">
                                             Sign up

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { MyContext } from '../../components/Context/Context';
 
 function OtpVerifyPage() {
     const location = useLocation()
@@ -9,6 +10,8 @@ function OtpVerifyPage() {
     const email = searchParams.get('email');
     const [otp, setOtp] = useState('');
     const navigate = useNavigate();
+
+    const { value } = useContext(MyContext);
    
     const handleVerifyOtp = async () => {
         try {
@@ -51,8 +54,8 @@ function OtpVerifyPage() {
 }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50 mt-16">
-            <div className="w-full max-w-md p-8 space-y-4 bg-white rounded-lg shadow-lg">
+        <div className="flex items-center justify-center min-h-screen mt-16">
+            <div className={`w-full max-w-md p-8 space-y-4 rounded-lg shadow-lg ${value ? 'bg-gray-600' : 'bg-gray-100'}`}>
                 <h2 className="text-2xl font-semibold text-center">Verify OTP</h2>
                 <input
                     type="text"

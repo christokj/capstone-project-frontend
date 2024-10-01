@@ -30,7 +30,7 @@ const AddProductPage = () => {
         setDescription(data.product.description);
         setAddedPhotos(data.product.image);
         setCategory(data.product.category);
-        setPrice(data.product.price);
+        setPrice(Math.round(data.product.price * 83));
       })
       .catch(error => {
         toast.error('Failed to fetch product details'+ error);
@@ -42,7 +42,7 @@ const AddProductPage = () => {
     const productData = {
       title,
       description,
-      price,
+      price : Math.round(price / 83),
       category,
       image: addedPhotos,
     }
@@ -95,7 +95,7 @@ const AddProductPage = () => {
       </div>
       <div className="form-control">
         <label htmlFor="price" className="label">
-          <span className="label-text">{"Price in dollar"}</span>
+          <span className="label-text">Price </span>
         </label>
         <input
           name="price"

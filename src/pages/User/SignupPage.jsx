@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as formik from 'formik';
 import * as yup from 'yup';
 import { axiosInstance } from '../../config/axiosInstance';
 import toast from 'react-hot-toast';
+import { MyContext } from '../../components/Context/Context';
 
 function SignupPage() {
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const { value } = useContext(MyContext);
 
     const navigate = useNavigate();
     const { Formik } = formik;
@@ -143,7 +146,7 @@ function SignupPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center px-1 mt-28 sm:px-10 my-10 mx-auto w-full bg-gray-100 rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700">
+        <div className={`flex flex-col items-center justify-center px-1 mt-28 sm:px-10 my-10 mx-auto w-full  ${value ? "bg-gray-600" : 'bg-gray-100'} rounded-lg shadow dark:border max-w-md dark:bg-gray-800 dark:border-gray-700`}>
             <div className="">
                 <h1 className="my-4 font-bold text-center leading-tight tracking-tight text-gray-900 text-2xl dark:text-white">
                     Create an account

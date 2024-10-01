@@ -54,7 +54,7 @@ function PhotosUploader({ addedPhotos, onChange }) {
             <div className='mt-2 grid grid-cols-3 gap-2'>
                 {addedPhotos.length > 0 && addedPhotos.map(link => (
                     <div className='h-32 w-40 flex relative' key={link}>
-                        <Image className='rounded-2xl w-full  object-cover' src={link} alt="Added photos" />
+                        <Image className='rounded-2xl w-fit  object-cover' src={link} alt="Added photos" />
                         <button onClick={ev => removePhoto(ev, link)} className='absolute bottom-1 right-1'>
                             <Lottie className='w-5' animationData={iconTrash} />
                         </button>
