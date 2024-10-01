@@ -37,7 +37,6 @@ const AddProductPage = () => {
       });
   }, [id]);
 
-
   async function saveProduct(ev) {
     ev.preventDefault();
     const productData = {
@@ -96,13 +95,12 @@ const AddProductPage = () => {
       </div>
       <div className="form-control">
         <label htmlFor="price" className="label">
-          <span className="label-text">Price</span>
+          <span className="label-text">{"Price in dollar"}</span>
         </label>
         <input
           name="price"
           type="number"
           value={price}
-          placeholder='Price'
           className="input input-bordered"
           onChange={ev => setPrice(ev.target.value)}
         />

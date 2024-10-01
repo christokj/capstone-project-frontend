@@ -30,6 +30,25 @@ function OtpVerifyPage() {
         }
     };
 
+    const resentOtp = async () => {
+
+    try {
+        const res = await axiosInstance({
+            url: '/user/otp-sender',
+            method: "POST",
+            data: { email },
+        });
+        toast.success("An OTP has been sent to your registered email.");
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.error) {
+            toast.error(error.response.data.error);
+        } else if (error.response && error.response.status === 400) {
+            toast.error(error.response.data.message || 'Login failed');
+        } else {
+            toast.error('An unexpected error occurred. Please use another password and email');
+        }
+    }
+}
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50 mt-16">
@@ -43,12 +62,21 @@ function OtpVerifyPage() {
                     maxLength={6}
                     className="w-full px-4 py-2 border rounded-lg"
                 />
+                <div className='flex flex-row'>
+                <button
+                    onClick={resentOtp}
+                    className="w-full px-4 py-2 font-semibold text-black hover:text-black border rounded-lg m-1 btn-outline hover:bg-gray-200"
+                >
+                    Resent OTP
+                </button>
                 <button
                     onClick={handleVerifyOtp}
-                    className="w-full px-4 py-2 font-semibold text-black bg-main rounded-lg hover:bg-gray-200"
-                >
+                    className="w-full px-4 py-2 m-1 font-semibold text-black bg-main rounded-lg hover:bg-gray-200"
+                    >
                     Verify OTP
                 </button>
+               
+                    </div>
             </div>
         </div>
     );
