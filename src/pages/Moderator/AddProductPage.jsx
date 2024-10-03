@@ -30,19 +30,18 @@ const AddProductPage = () => {
         setDescription(data.product.description);
         setAddedPhotos(data.product.image);
         setCategory(data.product.category);
-        setPrice(Math.round(data.product.price * 83));
+        setPrice(data.product.price );
       })
       .catch(error => {
         toast.error('Failed to fetch product details'+ error);
       });
   }, [id]);
-
   async function saveProduct(ev) {
     ev.preventDefault();
     const productData = {
       title,
       description,
-      price : Math.round(price / 83),
+      price : price,
       category,
       image: addedPhotos,
     }
@@ -95,7 +94,7 @@ const AddProductPage = () => {
       </div>
       <div className="form-control">
         <label htmlFor="price" className="label">
-          <span className="label-text">Price </span>
+          <span className="label-text">Price in dollar</span>
         </label>
         <input
           name="price"
