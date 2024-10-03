@@ -14,10 +14,9 @@ const AddProductPage = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState();
   const [category, setCategory] = useState('');
   const [addedPhotos, setAddedPhotos] = useState([]);
-
   const navigate = useNavigate();
   useEffect(() => {
     if (!id) {
@@ -30,7 +29,7 @@ const AddProductPage = () => {
         setDescription(data.product.description);
         setAddedPhotos(data.product.image);
         setCategory(data.product.category);
-        setPrice(data.product.price );
+        setPrice(Math.round(data.product.price * 83));
       })
       .catch(error => {
         toast.error('Failed to fetch product details'+ error);
@@ -41,7 +40,7 @@ const AddProductPage = () => {
     const productData = {
       title,
       description,
-      price : price,
+      price : price/83,
       category,
       image: addedPhotos,
     }
@@ -98,7 +97,7 @@ const AddProductPage = () => {
         </label>
         <input
           name="price"
-          type="number"
+          type="text"
           value={price}
           className="input input-bordered"
           onChange={ev => setPrice(ev.target.value)}
