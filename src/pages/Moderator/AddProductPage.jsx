@@ -93,7 +93,7 @@ const AddProductPage = () => {
       </div>
       <div className="form-control">
         <label htmlFor="price" className="label">
-          <span className="label-text">Price in dollar</span>
+          <span className="label-text">Price </span>
         </label>
         <input
           name="price"
